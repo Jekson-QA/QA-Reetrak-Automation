@@ -1,0 +1,4518 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Count 34 /Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R 47 0 R 49 0 R 51 0 R 53 0 R 55 0 R 57 0 R 59 0 R 61 0 R 63 0 R 65 0 R 67 0 R 69 0 R] >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 4 0 R >> endobj
+4 0 obj << /Length 3260 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F2 22 Tf
+0.11 0.24 0.42 rg
+1 0 0 1 46 766 Tm (Reetrak Automation Framework) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 672 Tm (Project Documentation and Maintenance Guide) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 622 Tm (Document purpose: This guide explains the Reetrak Automation project in an industry-standard) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 607 Tm (format so that testers, automation engineers, leads, and new team members can understand the) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 592 Tm (framework, run it correctly, extend it safely, and maintain it over time.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 565 Tm (Document scope: This document covers the current framework implementation, its structure,) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 550 Tm (usage model, execution flow, reporting, update process, and practical recommendations for) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 535 Tm (future improvements.) Tj
+ET
+0.88 0.90 0.93 RG
+46 512 m 549 512 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 456 Tm (1. Executive Summary) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 406 Tm (The Reetrak Automation project is a Selenium-based UI automation framework built for) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 391 Tm (validating login and logout functionality of the Reetrak web application. It follows a Page) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 376 Tm (Object Model structure and uses Java 21, Maven, TestNG, WebDriverManager, reusable utility) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 361 Tm (classes, screenshot capture, and a custom HTML execution report.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 334 Tm (At a high level, the framework is designed to:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 307 Tm (* automate repetitive browser-based validation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 292 Tm (* reduce manual effort in login and authentication testing) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 277 Tm (* support repeatable regression and smoke testing) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 262 Tm (* make test code easier to maintain as the application evolves) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 247 Tm (* provide execution evidence through screenshots and reports) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 220 Tm (This framework is already structured in a maintainable way, with clear separation between) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 205 Tm (configuration, driver setup, page interactions, test cases, and reporting. That makes it a) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 190 Tm (solid base for scaling into a broader enterprise automation suite.) Tj
+ET
+0.88 0.90 0.93 RG
+46 167 m 549 167 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 111 Tm (2. Project Objective) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 1) Tj
+ET
+endstream endobj
+5 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 6 0 R >> endobj
+6 0 obj << /Length 3136 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 738 Tm (The primary objective of this project is to validate critical authentication-related user) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 723 Tm (journeys in the Reetrak application through automated browser-based testing.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 696 Tm (The current implementation focuses on:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 669 Tm (* successful login) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 654 Tm (* logout verification) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 639 Tm (* validation failures for blank credentials) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 624 Tm (* invalid username handling) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 609 Tm (* invalid password handling) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 594 Tm (* deactivated user handling) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 579 Tm (* locked user handling) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 552 Tm (This project can be used as:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 525 Tm (* a smoke suite for authentication checks) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 510 Tm (* a regression suite for login-related functionality) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 495 Tm (* a starter framework for broader UI automation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 480 Tm (* a reusable baseline for future automation modules) Tj
+ET
+0.88 0.90 0.93 RG
+46 457 m 549 457 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 401 Tm (3. Why This Framework Exists) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 351 Tm (Manual UI testing is slow, repetitive, and error-prone, especially for core flows such as) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 336 Tm (login and logout that must be checked frequently. This framework exists to solve that) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 321 Tm (problem by automating predictable validation scenarios with reliable setup, reusable) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 306 Tm (components, and standardized reporting.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 259 Tm (Business reasons) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 221 Tm (* authentication is a critical gateway flow) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 206 Tm (* failures in login/logout can block all other application access) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 191 Tm (* regression verification is needed after every release or bug fix) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 176 Tm (* consistent evidence is required for QA signoff) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 129 Tm (Engineering reasons) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 2) Tj
+ET
+endstream endobj
+7 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 8 0 R >> endobj
+8 0 obj << /Length 2851 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* reusable components reduce duplication) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 751 Tm (* Page Object Model improves maintainability) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 736 Tm (* Maven standardizes build and execution) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 721 Tm (* TestNG provides controlled execution and assertions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 706 Tm (* screenshots and reports improve debugging and traceability) Tj
+ET
+0.88 0.90 0.93 RG
+46 683 m 549 683 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 627 Tm (4. Technology Stack and Why Each Tool Is Used) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 557 Tm (Java 21) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 519 Tm (Java is the implementation language for the framework.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 492 Tm (Why it is used:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 465 Tm (* strong ecosystem for Selenium automation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 450 Tm (* excellent compatibility with enterprise tooling) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 435 Tm (* stable object-oriented design for framework development) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 420 Tm (* widely adopted by QA and automation teams) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 393 Tm (When to use:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 366 Tm (* when building scalable automation frameworks) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 351 Tm (* when integration with CI/CD and enterprise reporting is expected) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 324 Tm (How it helps here:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 297 Tm (* provides the structure for page classes, utilities, and tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 282 Tm (* supports clean package-level separation of concerns) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 235 Tm (Maven) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 197 Tm (Maven is used for dependency management and build execution.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 170 Tm (Why it is used:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 143 Tm (* standard project structure) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 128 Tm (* easy dependency version control) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 113 Tm (* repeatable builds) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 3) Tj
+ET
+endstream endobj
+9 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 10 0 R >> endobj
+10 0 obj << /Length 2880 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* easy command-line execution) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 739 Tm (When to use:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 712 Tm (* when the team needs a standard Java build system) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 697 Tm (* when dependency management should remain centralized) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 670 Tm (How it helps here:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 643 Tm (* controls library versions through `pom.xml`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 628 Tm (* uses Surefire to execute TestNG through Maven) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 581 Tm (Selenium WebDriver) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 543 Tm (Selenium drives the browser and performs user-level interactions.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 516 Tm (Why it is used:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 489 Tm (* supports real browser automation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 474 Tm (* suitable for validating end-to-end UI workflows) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 459 Tm (* works with major browsers) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 432 Tm (When to use:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 405 Tm (* when the objective is to validate visible browser behavior) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 390 Tm (* when user interactions and page rendering matter) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 363 Tm (How it helps here:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 336 Tm (* enters credentials) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 321 Tm (* clicks login and logout controls) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 306 Tm (* reads UI messages and page text) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 259 Tm (TestNG) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 221 Tm (TestNG manages test execution, lifecycle hooks, priorities, assertions, and listeners.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 194 Tm (Why it is used:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 167 Tm (* strong test annotation support) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 152 Tm (* suite execution through XML) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 137 Tm (* native listener integration) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 122 Tm (* simple assertion model) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 4) Tj
+ET
+endstream endobj
+11 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 12 0 R >> endobj
+12 0 obj << /Length 2843 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 766 Tm (When to use:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 739 Tm (* when controlled execution order matters) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 724 Tm (* when reporting or custom listeners are needed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 697 Tm (How it helps here:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 670 Tm (* runs test cases in defined order) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 655 Tm (* manages setup and teardown) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 640 Tm (* integrates with the custom HTML report) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 593 Tm (WebDriverManager) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 555 Tm (WebDriverManager automatically manages browser driver binaries.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 528 Tm (Why it is used:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 501 Tm (* removes manual driver setup effort) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 486 Tm (* reduces environment-specific driver issues) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 459 Tm (When to use:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 432 Tm (* when local and CI environments need simplified browser startup) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 405 Tm (How it helps here:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 378 Tm (* automatically resolves browser drivers for Chrome, Firefox, and Edge) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 331 Tm (Page Object Model) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 293 Tm (Page Object Model is the design pattern used for page interaction classes.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 266 Tm (Why it is used:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 239 Tm (* avoids writing locators directly inside tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 224 Tm (* improves maintainability when UI changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 209 Tm (* keeps tests readable) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 182 Tm (When to use:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 155 Tm (* when the automation suite has reusable screens or workflows) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 128 Tm (How it helps here:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 101 Tm (* `LoginPage.java` contains login-specific element locators and methods) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 5) Tj
+ET
+endstream endobj
+13 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 14 0 R >> endobj
+14 0 obj << /Length 2364 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* tests remain focused on validation logic instead of UI interaction details) Tj
+ET
+0.88 0.90 0.93 RG
+46 743 m 549 743 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 687 Tm (5. Current Project Architecture) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 637 Tm (The framework follows a layered structure.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 590 Tm (Layer 1: Configuration layer) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 552 Tm (Responsible for:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 525 Tm (* environment values) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 510 Tm (* browser selection) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 495 Tm (* base URL) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 480 Tm (* test credentials and test data) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 453 Tm (Implemented through:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 426 Tm (* `src/test/resources/config.properties`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 411 Tm (* `src/main/java/com/reetrak/automation/utilities/ConfigReader.java`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 364 Tm (Layer 2: Driver management layer) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 326 Tm (Responsible for:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 299 Tm (* browser creation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 284 Tm (* browser selection) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 269 Tm (* timeout configuration) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 254 Tm (* driver cleanup) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 227 Tm (Implemented through:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 200 Tm (* `src/main/java/com/reetrak/automation/factory/DriverFactory.java`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 153 Tm (Layer 3: Reusable page interaction layer) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 115 Tm (Responsible for:) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 6) Tj
+ET
+endstream endobj
+15 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 16 0 R >> endobj
+16 0 obj << /Length 2757 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* common click, type, and read actions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 751 Tm (* page initialization) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 736 Tm (* synchronization support through waits) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 709 Tm (Implemented through:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 682 Tm (* `src/main/java/com/reetrak/automation/pages/BasePage.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 667 Tm (* `src/main/java/com/reetrak/automation/utilities/WaitUtils.java`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 620 Tm (Layer 4: Business page layer) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 582 Tm (Responsible for:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 555 Tm (* screen-specific locators) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 540 Tm (* screen-specific workflow methods) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 525 Tm (* reusable actions for the Reetrak UI) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 498 Tm (Implemented through:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 471 Tm (* `src/main/java/com/reetrak/automation/pages/LoginPage.java`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 424 Tm (Layer 5: Test execution layer) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 386 Tm (Responsible for:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 359 Tm (* declaring test scenarios) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 344 Tm (* calling page methods) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 329 Tm (* validating expected outcomes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 302 Tm (Implemented through:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 275 Tm (* `src/test/java/com/reetrak/automation/base/BaseTest.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 260 Tm (* `src/test/java/com/reetrak/automation/tests/LoginLogoutTest.java`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 213 Tm (Layer 6: Reporting and evidence layer) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 175 Tm (Responsible for:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 148 Tm (* screenshots) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 133 Tm (* execution summaries) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 118 Tm (* traceability of test results) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 7) Tj
+ET
+endstream endobj
+17 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 18 0 R >> endobj
+18 0 obj << /Length 2252 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 766 Tm (Implemented through:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 739 Tm (* `src/main/java/com/reetrak/automation/utilities/ScreenshotUtils.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 724 Tm (* `src/test/java/com/reetrak/automation/reports/HtmlSummaryReporter.java`) Tj
+ET
+0.88 0.90 0.93 RG
+46 701 m 549 701 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 645 Tm (6. Detailed Project Structure) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 587 Tm (Reetrak Automation/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 558 Tm (|-- pom.xml) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 529 Tm (|-- testng.xml) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 500 Tm (|-- docs/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 471 Tm (|   |-- Reetrak_Automation_Project_Guide.md) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 442 Tm (|   |-- Reetrak_Automation_Project_Guide.pdf) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 413 Tm (|   `-- Generate-GuidePdf.ps1) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 384 Tm (|-- src/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 355 Tm (|   |-- main/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 326 Tm (|   |   `-- java/com/reetrak/automation/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 297 Tm (|   |       |-- factory/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 268 Tm (|   |       |   `-- DriverFactory.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 239 Tm (|   |       |-- pages/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 210 Tm (|   |       |   |-- BasePage.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 181 Tm (|   |       |   `-- LoginPage.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 152 Tm (|   |       `-- utilities/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 123 Tm (|   |           |-- ConfigReader.java) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 8) Tj
+ET
+endstream endobj
+19 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 20 0 R >> endobj
+20 0 obj << /Length 2419 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 766 Tm (|   |           |-- ScreenshotUtils.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 737 Tm (|   |           `-- WaitUtils.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 708 Tm (|   `-- test/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 679 Tm (|       |-- java/com/reetrak/automation/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 650 Tm (|       |   |-- base/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 621 Tm (|       |   |   `-- BaseTest.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 592 Tm (|       |   |-- reports/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 563 Tm (|       |   |   `-- HtmlSummaryReporter.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 534 Tm (|       |   `-- tests/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 505 Tm (|       |       `-- LoginLogoutTest.java) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 476 Tm (|       `-- resources/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 447 Tm (|           `-- config.properties) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 418 Tm (|-- test-output/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 389 Tm (|   |-- html-summary-report.html) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 360 Tm (|   `-- screenshots/) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 331 Tm (`-- target/) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 278 Tm (Structure explanation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 240 Tm (`src/main/java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 213 Tm (* contains framework code and reusable automation components) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 186 Tm (`src/test/java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 159 Tm (* contains test classes, lifecycle handling, and reporting classes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 132 Tm (`src/test/resources`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 105 Tm (* contains configurable execution data such as browser, URL, and credentials) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 9) Tj
+ET
+endstream endobj
+21 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 22 0 R >> endobj
+22 0 obj << /Length 2098 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 754 Tm (`test-output`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 727 Tm (* contains generated reports and screenshots after execution) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 700 Tm (`docs`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 673 Tm (* contains project-level documentation and the PDF export utility) Tj
+ET
+0.88 0.90 0.93 RG
+46 650 m 549 650 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 594 Tm (7. End-to-End Execution Flow) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 544 Tm (This section explains what happens when the framework is executed.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 497 Tm (Step 1: Maven starts the test run) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 459 Tm (Command:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 424 Tm (mvn clean test) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 391 Tm (Maven reads `pom.xml`, resolves dependencies, compiles the project, and starts the Surefire) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 376 Tm (plugin.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 329 Tm (Step 2: Surefire loads TestNG) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 291 Tm (The Surefire plugin uses:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 264 Tm (* `testng.xml`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 237 Tm (This file tells TestNG:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 210 Tm (* which test classes to run) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 195 Tm (* which listeners to attach) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 148 Tm (Step 3: TestNG initializes the suite) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 110 Tm (The suite currently:) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 10) Tj
+ET
+endstream endobj
+23 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 24 0 R >> endobj
+24 0 obj << /Length 2763 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 754 Tm (* runs with `parallel="false"`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 739 Tm (* registers `HtmlSummaryReporter`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 724 Tm (* executes the `LoginLogoutTest` class) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 677 Tm (Step 4: `BaseTest` setup executes before each test) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 639 Tm (Before every test method:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 612 Tm (* browser value is loaded) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 597 Tm (* base URL is loaded) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 582 Tm (* test data is loaded) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 567 Tm (* driver is created) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 552 Tm (* browser is opened and prepared) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 505 Tm (Step 5: Test method executes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 467 Tm (The test:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 440 Tm (* creates the page object) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 425 Tm (* opens the application URL) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 410 Tm (* performs the user actions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 395 Tm (* validates expected results using assertions) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 348 Tm (Step 6: Teardown executes after each test) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 310 Tm (After every test:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 283 Tm (* screenshot is captured for pass or fail) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 268 Tm (* screenshot path is attached to the result) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 253 Tm (* browser session is closed) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 206 Tm (Step 7: HTML summary report is generated) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 168 Tm (After suite completion:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 141 Tm (* execution metrics are collected) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 126 Tm (* rows are added for passed, failed, and skipped tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 111 Tm (* a styled HTML summary report is written to `test-output/html-summary-report.html`) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 11) Tj
+ET
+endstream endobj
+25 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 26 0 R >> endobj
+26 0 obj << /Length 2246 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+0.88 0.90 0.93 RG
+46 758 m 549 758 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 702 Tm (8. Key Files and Their Functional Role) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 620 Tm (`pom.xml`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 570 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 543 Tm (* project metadata) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 528 Tm (* dependency management) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 513 Tm (* compiler configuration) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 498 Tm (* Surefire test execution setup) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 471 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 444 Tm (* this is the build backbone of the framework) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 429 Tm (* dependency updates happen here) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 414 Tm (* Java version control happens here) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 387 Tm (Current notable dependencies:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 360 Tm (* `selenium-java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 345 Tm (* `testng`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 330 Tm (* `webdrivermanager`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 315 Tm (* `commons-io`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 300 Tm (* `slf4j-simple`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 285 Tm (* `scala-library`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 258 Tm (Current plugins:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 231 Tm (* `maven-compiler-plugin`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 216 Tm (* `maven-surefire-plugin`) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 157 Tm (`testng.xml`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 107 Tm (Purpose:) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 12) Tj
+ET
+endstream endobj
+27 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 28 0 R >> endobj
+28 0 obj << /Length 2666 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 754 Tm (* defines which classes are executed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 739 Tm (* registers custom listeners) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 724 Tm (* controls suite-level behavior) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 697 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 670 Tm (* it is the execution contract for TestNG) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 655 Tm (* new classes can be added here for suite inclusion) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 596 Tm (`ConfigReader.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 546 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 519 Tm (* loads properties from `config.properties`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 504 Tm (* allows JVM system properties to override file values) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 489 Tm (* reads all `testdata.*` entries into a map) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 462 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 435 Tm (* centralizes configuration access) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 420 Tm (* supports environment-specific execution) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 361 Tm (`DriverFactory.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 311 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 284 Tm (* initializes browser drivers) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 269 Tm (* manages browser-specific startup) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 254 Tm (* maximizes the browser) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 239 Tm (* sets timeouts) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 224 Tm (* closes and removes the driver after execution) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 197 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 170 Tm (* keeps driver lifecycle consistent) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 155 Tm (* avoids duplicate setup logic in tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 128 Tm (Current supported browsers:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 101 Tm (* Chrome) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 13) Tj
+ET
+endstream endobj
+29 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 30 0 R >> endobj
+30 0 obj << /Length 2357 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* Firefox) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 751 Tm (* Edge) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 692 Tm (`BasePage.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 642 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 615 Tm (* provides reusable page methods) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 600 Tm (* initializes page elements with `PageFactory`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 585 Tm (* integrates waiting behavior with page interactions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 558 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 531 Tm (* keeps common UI actions centralized) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 516 Tm (* prevents repeated click/type/read logic across pages) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 457 Tm (`LoginPage.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 407 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 380 Tm (* stores login and logout locators) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 365 Tm (* performs login workflow) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 350 Tm (* performs logout workflow) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 335 Tm (* reads validation and page messages) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 308 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 281 Tm (* this is the current business page model of the application) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 266 Tm (* it shows how future pages should be created) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 207 Tm (`BaseTest.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 157 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 130 Tm (* provides setup and teardown) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 115 Tm (* initializes `driver`, `baseUrl`, and test data) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 14) Tj
+ET
+endstream endobj
+31 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 32 0 R >> endobj
+32 0 obj << /Length 2177 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* captures screenshots) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 739 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 712 Tm (* every test class should inherit consistent behavior) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 653 Tm (`LoginLogoutTest.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 603 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 576 Tm (* contains current test scenarios) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 561 Tm (* validates actual application behavior) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 534 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 507 Tm (* this is the functional coverage entry point of the existing framework) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 448 Tm (`ScreenshotUtils.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 398 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 371 Tm (* captures screenshots) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 356 Tm (* stores them in pass or fail folders) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 329 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 302 Tm (* gives execution evidence for debugging and reporting) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 243 Tm (`HtmlSummaryReporter.java`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 193 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 166 Tm (* creates the post-run summary report) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 151 Tm (* aggregates execution results) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 136 Tm (* links screenshots to the report) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 109 Tm (Why it matters:) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 15) Tj
+ET
+endstream endobj
+33 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 34 0 R >> endobj
+34 0 obj << /Length 2502 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 754 Tm (* gives an immediate business-friendly execution overview) Tj
+ET
+0.88 0.90 0.93 RG
+46 731 m 549 731 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 675 Tm (9. Current Configuration and Test Data Model) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 625 Tm (Current configuration file:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 598 Tm (`src/test/resources/config.properties`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 571 Tm (Current values include:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 544 Tm (* browser selection) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 529 Tm (* application URL) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 514 Tm (* valid username and password) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 499 Tm (* invalid username) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 484 Tm (* deactivated username) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 469 Tm (* invalid password) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 442 Tm (Current property examples:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 407 Tm (browser=chrome) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 378 Tm (base.url=http://localhost:8080/TrackAndTraceServer/reeclient/#/pages/login) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 349 Tm (testdata.username=Tadmin) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 320 Tm (testdata.password=password) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 291 Tm (testdata.invalid.username=InvalidUser) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 262 Tm (testdata.deactive.username=jadmin) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 233 Tm (testdata.invalid.password=InvalidPassword) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 180 Tm (Why this model is useful) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 142 Tm (* keeps environment-specific values outside the code) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 127 Tm (* supports reusability across tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 112 Tm (* allows quick updates without changing Java classes) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 16) Tj
+ET
+endstream endobj
+35 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 36 0 R >> endobj
+36 0 obj << /Length 2152 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 734 Tm (When to update this file) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 696 Tm (* when application URL changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 681 Tm (* when local environment changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 666 Tm (* when credentials change) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 651 Tm (* when additional test inputs are needed) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 604 Tm (How overrides work) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 566 Tm (System properties take priority over file values.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 539 Tm (Example:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 504 Tm (mvn clean test -Dbrowser=edge -Dbase.url=http://new-env/app) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 471 Tm (This makes the framework suitable for both local runs and CI/CD execution.) Tj
+ET
+0.88 0.90 0.93 RG
+46 448 m 549 448 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 392 Tm (10. Current Test Coverage) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 342 Tm (The current test suite contains seven scenarios.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 295 Tm (1. Blank username and password) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 257 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 230 Tm (* validates required field behavior) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 203 Tm (Expected result:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 176 Tm (* username validation message should appear) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 161 Tm (* password validation message should appear) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 114 Tm (2. Invalid username with valid password) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 17) Tj
+ET
+endstream endobj
+37 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 38 0 R >> endobj
+38 0 obj << /Length 2074 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 754 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 727 Tm (* validates unknown-user rejection) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 700 Tm (Expected result:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 673 Tm (* error message should state that the user does not exist) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 626 Tm (3. Valid username with invalid password) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 588 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 561 Tm (* validates password mismatch handling) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 534 Tm (Expected result:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 507 Tm (* user should remain on the login page) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 460 Tm (4. Valid username and password) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 422 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 395 Tm (* validates successful login) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 368 Tm (Expected result:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 341 Tm (* dashboard title should be visible) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 294 Tm (5. Logout verification) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 256 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 229 Tm (* validates exit flow from an authenticated session) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 202 Tm (Expected result:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 175 Tm (* application should return to the login page) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 128 Tm (6. Deactivated user verification) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 18) Tj
+ET
+endstream endobj
+39 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 40 0 R >> endobj
+40 0 obj << /Length 2415 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 766 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 739 Tm (* validates inactive account behavior) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 712 Tm (Expected result:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 685 Tm (* deactivated-user message should be shown) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 638 Tm (7. Locked user verification) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 600 Tm (Purpose:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 573 Tm (* validates lock behavior after repeated invalid attempts) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 546 Tm (Expected result:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 519 Tm (* locked-user message should be shown) Tj
+ET
+0.88 0.90 0.93 RG
+46 496 m 549 496 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 440 Tm (11. How and When to Use This Framework) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 370 Tm (Recommended usage scenarios) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 332 Tm (Use this framework:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 305 Tm (* before production releases) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 290 Tm (* after authentication-related code changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 275 Tm (* after bug fixes in login/logout modules) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 260 Tm (* as part of daily smoke validation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 245 Tm (* during regression cycles) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 230 Tm (* in QA, UAT, or staging validation pipelines) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 183 Tm (When this framework is the right choice) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 145 Tm (Use UI automation when:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 118 Tm (* business wants validation from an end-user perspective) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 103 Tm (* visual and interactive behavior must be confirmed) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 19) Tj
+ET
+endstream endobj
+41 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 42 0 R >> endobj
+42 0 obj << /Length 2370 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* login flow includes page rendering and UI messaging that API tests cannot fully) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 751 Tm (cover) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 704 Tm (When not to rely on it alone) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 666 Tm (Do not use UI automation as the only validation layer when:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 639 Tm (* API tests can validate the logic faster) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 624 Tm (* the feature is highly unstable) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 609 Tm (* test execution speed is the main priority) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 562 Tm (Balanced testing strategy) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 524 Tm (Industry standard practice is:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 497 Tm (* unit tests for code-level validation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 482 Tm (* API tests for business rules and service contracts) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 467 Tm (* UI tests for complete user journeys and critical flows) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 440 Tm (This framework belongs to the UI automation layer of that strategy.) Tj
+ET
+0.88 0.90 0.93 RG
+46 417 m 549 417 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 361 Tm (12. How to Run the Framework) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 279 Tm (Prerequisites) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 229 Tm (Before execution, ensure the following are available:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 202 Tm (* Java 21 installed and configured) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 187 Tm (* Maven installed and available in PATH) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 172 Tm (* at least one supported browser installed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 157 Tm (* target application URL reachable) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 20) Tj
+ET
+endstream endobj
+43 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 44 0 R >> endobj
+44 0 obj << /Length 1693 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 766 Tm (Basic execution) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 708 Tm (mvn clean test) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 643 Tm (Run on a specific browser) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 585 Tm (mvn clean test -Dbrowser=chrome) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 556 Tm (mvn clean test -Dbrowser=firefox) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 527 Tm (mvn clean test -Dbrowser=edge) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 462 Tm (Run on a specific environment URL) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 404 Tm (mvn clean test -Dbase.url=http://your-server/app) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 339 Tm (Run with different credentials) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 281 Tm (mvn clean test -Dtestdata.username=MyUser -Dtestdata.password=MyPassword) Tj
+ET
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 216 Tm (Expected execution artifacts) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 166 Tm (After execution, review:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 139 Tm (* `test-output/html-summary-report.html`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 124 Tm (* `test-output/screenshots/pass`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 109 Tm (* `test-output/screenshots/fail`) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 21) Tj
+ET
+endstream endobj
+45 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 46 0 R >> endobj
+46 0 obj << /Length 2382 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+0.88 0.90 0.93 RG
+46 758 m 549 758 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 702 Tm (13. How to Add New Test Cases) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 652 Tm (This section explains the standard way to expand the suite without breaking framework) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 637 Tm (design.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 590 Tm (Standard approach) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 552 Tm (1. identify the business scenario) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 537 Tm (2. identify which page or component is involved) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 522 Tm (3. create or update page object methods) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 507 Tm (4. add a new test method or test class) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 492 Tm (5. use assertions in the test layer) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 477 Tm (6. add test data if needed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 462 Tm (7. run the suite and review the report) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 415 Tm (Example: add a forgot-password test) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 377 Tm (Add locator and action in `LoginPage.java`:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 342 Tm (@FindBy\(xpath = "//a[text\(\)='Forgot Password?']"\)) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 313 Tm (private WebElement forgotPasswordLink;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 284 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 255 Tm (public void openForgotPassword\(\) {) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 226 Tm (    click\(forgotPasswordLink\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 197 Tm (}) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 164 Tm (Add a test:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 129 Tm (@Test) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 100 Tm (public void forgotPasswordPageShouldOpen\(\) {) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 22) Tj
+ET
+endstream endobj
+47 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 48 0 R >> endobj
+48 0 obj << /Length 2305 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 750 Tm (    LoginPage loginPage = new LoginPage\(driver\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 721 Tm (    loginPage.open\(baseUrl\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 692 Tm (    loginPage.openForgotPassword\(\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 663 Tm (    Assert.assertTrue\(driver.getCurrentUrl\(\).contains\("forgot-password"\)\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 634 Tm (}) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 581 Tm (Best-practice rules while adding tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 543 Tm (* keep locators out of test classes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 528 Tm (* keep assertions in test classes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 513 Tm (* keep reusable interactions in page classes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 498 Tm (* keep test data in configuration or a dedicated data source) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 483 Tm (* keep setup and teardown in the base layer) Tj
+ET
+0.88 0.90 0.93 RG
+46 460 m 549 460 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 404 Tm (14. How to Add a New Page Object) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 354 Tm (Create a new page class when:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 327 Tm (* the application navigates to a different screen) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 312 Tm (* a page has its own locators and actions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 297 Tm (* multiple tests need the same page behavior) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 250 Tm (Location) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 204 Tm (src/main/java/com/reetrak/automation/pages/) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 151 Tm (Template) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 105 Tm (package com.reetrak.automation.pages;) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 23) Tj
+ET
+endstream endobj
+49 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 50 0 R >> endobj
+50 0 obj << /Length 2366 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 754 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 725 Tm (import org.openqa.selenium.WebDriver;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 696 Tm (import org.openqa.selenium.WebElement;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 667 Tm (import org.openqa.selenium.support.FindBy;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 638 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 609 Tm (public class DashboardPage extends BasePage {) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 580 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 551 Tm (    @FindBy\(xpath = "//span[contains\(normalize-space\(\), 'Dashboard'\)]"\)) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 522 Tm (    private WebElement dashboardTitle;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 493 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 464 Tm (    public DashboardPage\(WebDriver driver\) {) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 435 Tm (        super\(driver\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 406 Tm (    }) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 377 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 348 Tm (    public String getDashboardTitle\(\) {) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 319 Tm (        return getText\(dashboardTitle\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 290 Tm (    }) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 261 Tm (}) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 208 Tm (Industry-standard guidance) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 170 Tm (* one class per logical page or component) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 155 Tm (* use meaningful method names) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 140 Tm (* avoid writing assertions inside page classes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 125 Tm (* expose behavior, not raw locator handling) Tj
+ET
+0.88 0.90 0.93 RG
+46 102 m 549 102 l S
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 24) Tj
+ET
+endstream endobj
+51 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 52 0 R >> endobj
+52 0 obj << /Length 2018 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 722 Tm (15. How to Add a New Test Class) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 672 Tm (Create a new class under:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 637 Tm (src/test/java/com/reetrak/automation/tests/) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 584 Tm (Template) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 538 Tm (package com.reetrak.automation.tests;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 509 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 480 Tm (import com.reetrak.automation.base.BaseTest;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 451 Tm (import com.reetrak.automation.pages.LoginPage;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 422 Tm (import org.testng.Assert;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 393 Tm (import org.testng.annotations.Test;) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 364 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 335 Tm (public class ExampleTest extends BaseTest {) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 306 Tm () Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 277 Tm (    @Test) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 248 Tm (    public void sampleTest\(\) {) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 219 Tm (        LoginPage loginPage = new LoginPage\(driver\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 190 Tm (        loginPage.open\(baseUrl\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 161 Tm (        Assert.assertTrue\(true\);) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 132 Tm (    }) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 103 Tm (}) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 25) Tj
+ET
+endstream endobj
+53 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 54 0 R >> endobj
+54 0 obj << /Length 2458 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 730 Tm (After creating the class) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 692 Tm (* add it to `testng.xml` if it should run in the suite) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 677 Tm (* execute the suite) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 662 Tm (* verify that screenshots and reports are generated) Tj
+ET
+0.88 0.90 0.93 RG
+46 639 m 549 639 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 583 Tm (16. How to Update Existing Tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 533 Tm (Update test code when:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 506 Tm (* the UI locator changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 491 Tm (* the expected behavior changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 476 Tm (* the screen flow changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 461 Tm (* the business rule changes) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 414 Tm (Standard update sequence) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 376 Tm (1. identify whether the issue is locator-related or expectation-related) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 361 Tm (2. update the page object first if the element changed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 346 Tm (3. update the assertion if the business outcome changed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 331 Tm (4. update test data if needed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 316 Tm (5. rerun tests and review evidence) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 269 Tm (Examples) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 231 Tm (* update `@FindBy` if a button id changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 216 Tm (* update assertion text if the validation message changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 201 Tm (* add a new method if the workflow now includes extra steps such as OTP) Tj
+ET
+0.88 0.90 0.93 RG
+46 178 m 549 178 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 122 Tm (17. How to Update Configuration) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 26) Tj
+ET
+endstream endobj
+55 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 56 0 R >> endobj
+56 0 obj << /Length 1990 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 750 Tm (Configuration changes are usually made in:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 723 Tm (`src/test/resources/config.properties`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 676 Tm (Update this file when) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 638 Tm (* browser defaults change) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 623 Tm (* environment URL changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 608 Tm (* test data changes) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 593 Tm (* new credentials or environment keys are required) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 546 Tm (Sample update) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 500 Tm (browser=edge) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 471 Tm (base.url=http://new-server/app) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 442 Tm (testdata.username=NewAdmin) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 413 Tm (testdata.password=NewPassword) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 360 Tm (Recommendation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 322 Tm (Use file updates for stable local defaults. Use command-line overrides for temporary) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 307 Tm (execution or CI/CD.) Tj
+ET
+0.88 0.90 0.93 RG
+46 284 m 549 284 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 228 Tm (18. How to Update Dependencies) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 178 Tm (Dependency versions are managed from `pom.xml`.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 131 Tm (Current version properties) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 27) Tj
+ET
+endstream endobj
+57 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 58 0 R >> endobj
+58 0 obj << /Length 2303 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* `selenium.version`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 751 Tm (* `testng.version`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 736 Tm (* `webdrivermanager.version`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 721 Tm (* `commons-io.version`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 706 Tm (* `slf4j.version`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 691 Tm (* `surefire.version`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 676 Tm (* `compiler.plugin.version`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 629 Tm (Update process) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 591 Tm (1. open `pom.xml`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 576 Tm (2. change the required version property) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 561 Tm (3. run the suite) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 546 Tm (4. review compatibility issues if they appear) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 499 Tm (Verification command) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 453 Tm (mvn clean test) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 400 Tm (Dependency update cautions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 362 Tm (* browser behavior can change after Selenium upgrades) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 347 Tm (* plugins can affect test execution flow) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 332 Tm (* driver compatibility should be revalidated) Tj
+ET
+0.88 0.90 0.93 RG
+46 309 m 549 309 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 253 Tm (19. Reporting and Evidence Management) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 183 Tm (Screenshot handling) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 145 Tm (`ScreenshotUtils.java` stores screenshots in:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 110 Tm (test-output/screenshots/pass) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 28) Tj
+ET
+endstream endobj
+59 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 60 0 R >> endobj
+60 0 obj << /Length 2566 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 758 Tm (test-output/screenshots/fail) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 725 Tm (Why it matters:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 698 Tm (* supports defect analysis) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 683 Tm (* preserves visual proof of the UI state) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 668 Tm (* helps understand pass and fail conditions) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 621 Tm (HTML summary reporting) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 583 Tm (`HtmlSummaryReporter.java` generates:) Tj
+ET
+BT
+/F3 9 Tf
+0.20 0.20 0.20 rg
+1 0 0 1 46 548 Tm (test-output/html-summary-report.html) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 515 Tm (Current report includes:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 488 Tm (* total test count) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 473 Tm (* passed test count) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 458 Tm (* failed test count) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 443 Tm (* skipped test count) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 428 Tm (* execution duration) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 413 Tm (* screenshot links) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 398 Tm (* error messages) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 383 Tm (* class and method names) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 336 Tm (How teams should use the report) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 298 Tm (* review failures first) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 283 Tm (* open linked screenshots) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 268 Tm (* confirm whether the failure is environment, locator, or product related) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 253 Tm (* archive the report as an execution artifact in CI/CD) Tj
+ET
+0.88 0.90 0.93 RG
+46 230 m 549 230 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 174 Tm (20. Strengths of the Current Framework) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 124 Tm (The current implementation already includes several good framework practices.) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 29) Tj
+ET
+endstream endobj
+61 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 62 0 R >> endobj
+62 0 obj << /Length 2594 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* clean project organization) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 751 Tm (* separated page and test layers) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 736 Tm (* centralized driver setup) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 721 Tm (* reusable configuration reader) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 706 Tm (* multi-browser support) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 691 Tm (* custom report generation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 676 Tm (* screenshot-based execution evidence) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 661 Tm (* reusable base test lifecycle) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 634 Tm (These strengths make the framework suitable for controlled expansion.) Tj
+ET
+0.88 0.90 0.93 RG
+46 611 m 549 611 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 555 Tm (21. Current Gaps, Risks, and Improvement Opportunities) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 505 Tm (The framework is functional, but there are also areas that should be improved over time.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 458 Tm (Use of `Thread.sleep\(\)`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 420 Tm (Why it is a risk:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 393 Tm (* increases execution time) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 378 Tm (* makes tests brittle) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 363 Tm (* causes avoidable flakiness) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 336 Tm (Recommended improvement:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 309 Tm (* replace hard waits with explicit waits in `WaitUtils`) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 262 Tm (Credentials stored in plain text) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 224 Tm (Why it is a risk:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 197 Tm (* insecure for shared or production-like environments) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 170 Tm (Recommended improvement:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 143 Tm (* move sensitive values to environment variables or CI secret storage) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 30) Tj
+ET
+endstream endobj
+63 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 64 0 R >> endobj
+64 0 obj << /Length 2271 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 766 Tm (Login and post-login actions are in one page class) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 728 Tm (Why it is a risk:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 701 Tm (* class responsibility will grow too large as the application expands) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 674 Tm (Recommended improvement:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 647 Tm (* split into dedicated page and component classes where needed) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 600 Tm (Exact text assertions only) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 562 Tm (Why it is a risk:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 535 Tm (* even small message wording changes can break tests) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 508 Tm (Recommended improvement:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 481 Tm (* combine message validation with state or navigation validation where possible) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 434 Tm (Single-suite scope) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 396 Tm (Why it is a risk:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 369 Tm (* execution flexibility is limited as the suite grows) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 342 Tm (Recommended improvement:) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 315 Tm (* create separate suites such as smoke, regression, and module-specific collections) Tj
+ET
+0.88 0.90 0.93 RG
+46 292 m 549 292 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 236 Tm (22. Recommended Maintenance Standards) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 186 Tm (To keep the framework maintainable, follow these standards.) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 139 Tm (Coding standards) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 101 Tm (* keep page methods business-readable) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 31) Tj
+ET
+endstream endobj
+65 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 66 0 R >> endobj
+66 0 obj << /Length 3028 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* keep test methods scenario-focused) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 751 Tm (* use meaningful method names) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 736 Tm (* avoid duplicate locator logic) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 689 Tm (Design standards) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 651 Tm (* pages should represent pages or reusable UI components) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 636 Tm (* tests should validate behavior, not manage low-level interaction details) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 621 Tm (* configuration should remain externalized) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 574 Tm (Execution standards) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 536 Tm (* run the suite after every meaningful change) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 521 Tm (* review report and screenshots, not just pass/fail count) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 506 Tm (* keep environment assumptions documented) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 459 Tm (Review standards) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 421 Tm (* verify locator stability) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 406 Tm (* check whether waits are appropriate) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 391 Tm (* confirm that assertions reflect business requirements) Tj
+ET
+0.88 0.90 0.93 RG
+46 368 m 549 368 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 312 Tm (23. Suggested Future Roadmap) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 262 Tm (These enhancements would move the project closer to a mature enterprise automation) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 247 Tm (framework.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 220 Tm (* replace `Thread.sleep\(\)` with condition-based waits) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 205 Tm (* add headless execution support) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 190 Tm (* add environment profiles such as dev, qa, uat, and prod-like) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 175 Tm (* add data-driven testing using `@DataProvider`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 160 Tm (* add tagging and grouping through TestNG) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 145 Tm (* split page responsibilities into more granular page/component objects) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 130 Tm (* strengthen secret management) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 115 Tm (* integrate with CI/CD artifact publishing) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 32) Tj
+ET
+endstream endobj
+67 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 68 0 R >> endobj
+68 0 obj << /Length 2298 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 766 Tm (* add richer reporting if needed) Tj
+ET
+0.88 0.90 0.93 RG
+46 743 m 549 743 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 687 Tm (24. Quick Reference Guide) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 617 Tm (To add a new test) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 579 Tm (1. extend `BaseTest`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 564 Tm (2. create or reuse a page object) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 549 Tm (3. add page actions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 534 Tm (4. add assertions in the test) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 519 Tm (5. update `testng.xml` if required) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 504 Tm (6. run the suite) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 457 Tm (To update an existing flow) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 419 Tm (1. update the page object locator or method) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 404 Tm (2. update the test assertion if expected behavior changed) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 389 Tm (3. update test data or config if required) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 374 Tm (4. rerun and review reports) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 327 Tm (To update config) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 289 Tm (1. edit `config.properties`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 274 Tm (2. or override values through `-D` system properties) Tj
+ET
+BT
+/F2 12 Tf
+0.27 0.27 0.27 rg
+1 0 0 1 46 227 Tm (To update dependencies) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 189 Tm (1. modify version properties in `pom.xml`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 174 Tm (2. run `mvn clean test`) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 159 Tm (3. validate compatibility) Tj
+ET
+0.88 0.90 0.93 RG
+46 136 m 549 136 l S
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 33) Tj
+ET
+endstream endobj
+69 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 71 0 R /F2 72 0 R /F3 73 0 R >> >> /Contents 70 0 R >> endobj
+70 0 obj << /Length 4398 >> stream
+BT
+/F2 10 Tf
+0.18 0.33 0.56 rg
+1 0 0 1 46 808 Tm (Reetrak Automation Framework Guide) Tj
+ET
+0.75 0.84 0.93 RG
+46 798 m 549 798 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 758 Tm (25. File Reference Index) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 708 Tm (* `pom.xml`: build, dependencies, compiler, and test execution configuration) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 693 Tm (* `testng.xml`: suite definition and listener registration) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 678 Tm (* `src/test/resources/config.properties`: execution defaults and test data) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 663 Tm (* `src/main/java/com/reetrak/automation/utilities/ConfigReader.java`: configuration) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 648 Tm (access) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 633 Tm (* `src/main/java/com/reetrak/automation/factory/DriverFactory.java`: browser lifecycle) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 618 Tm (management) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 603 Tm (* `src/main/java/com/reetrak/automation/pages/BasePage.java`: shared page actions) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 588 Tm (* `src/main/java/com/reetrak/automation/pages/LoginPage.java`: login/logout page logic) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 573 Tm (* `src/main/java/com/reetrak/automation/utilities/WaitUtils.java`: explicit waits) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 558 Tm (* `src/main/java/com/reetrak/automation/utilities/ScreenshotUtils.java`: screenshot) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 543 Tm (capture) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 528 Tm (* `src/test/java/com/reetrak/automation/base/BaseTest.java`: setup and teardown) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 513 Tm (lifecycle) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 498 Tm (* `src/test/java/com/reetrak/automation/tests/LoginLogoutTest.java`: scenario coverage) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 483 Tm (* `src/test/java/com/reetrak/automation/reports/HtmlSummaryReporter.java`: custom HTML) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 58 468 Tm (reporting) Tj
+ET
+0.88 0.90 0.93 RG
+46 445 m 549 445 l S
+BT
+/F2 15 Tf
+0.14 0.31 0.52 rg
+1 0 0 1 46 389 Tm (26. Final Conclusion) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 339 Tm (The Reetrak Automation project is a well-structured Selenium TestNG framework designed to) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 324 Tm (automate authentication-related validation for the Reetrak web application. It already) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 309 Tm (includes strong foundational practices such as Page Object Model design, centralized driver) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 294 Tm (setup, externalized configuration, evidence capture, and custom reporting.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 267 Tm (This framework should be used whenever browser-level validation of login and logout flows is) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 252 Tm (needed. It should be extended by adding well-structured page objects and test classes. It) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 237 Tm (should be maintained by updating locators, configuration, and dependencies in their proper) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 222 Tm (layers instead of mixing concerns.) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 195 Tm (Most importantly, the framework is not only useful for current login coverage. It is also a) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 180 Tm (scalable starting point for future UI automation across the wider application. With) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 165 Tm (continued improvement in waits, configuration security, suite organization, and reporting) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 150 Tm (maturity, it can evolve into a strong enterprise-grade automation foundation without) Tj
+ET
+BT
+/F1 10 Tf
+0.15 0.15 0.15 rg
+1 0 0 1 46 135 Tm (changing its core design philosophy.) Tj
+ET
+BT
+/F1 9 Tf
+0.45 0.45 0.45 rg
+1 0 0 1 46 24 Tm (Generated from workspace documentation) Tj
+1 0 0 1 500 24 Tm (Page 34) Tj
+ET
+endstream endobj
+71 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+72 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> endobj
+73 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Courier >> endobj
+xref
+0 74
+0000000000 65535 f 
+0000000010 00000 n 
+0000000060 00000 n 
+0000000347 00000 n 
+0000000497 00000 n 
+0000003809 00000 n 
+0000003959 00000 n 
+0000007147 00000 n 
+0000007297 00000 n 
+0000010200 00000 n 
+0000010351 00000 n 
+0000013284 00000 n 
+0000013436 00000 n 
+0000016332 00000 n 
+0000016484 00000 n 
+0000018901 00000 n 
+0000019053 00000 n 
+0000021863 00000 n 
+0000022015 00000 n 
+0000024320 00000 n 
+0000024472 00000 n 
+0000026944 00000 n 
+0000027096 00000 n 
+0000029247 00000 n 
+0000029399 00000 n 
+0000032215 00000 n 
+0000032367 00000 n 
+0000034666 00000 n 
+0000034818 00000 n 
+0000037537 00000 n 
+0000037689 00000 n 
+0000040099 00000 n 
+0000040251 00000 n 
+0000042481 00000 n 
+0000042633 00000 n 
+0000045188 00000 n 
+0000045340 00000 n 
+0000047545 00000 n 
+0000047697 00000 n 
+0000049824 00000 n 
+0000049976 00000 n 
+0000052444 00000 n 
+0000052596 00000 n 
+0000055019 00000 n 
+0000055171 00000 n 
+0000056917 00000 n 
+0000057069 00000 n 
+0000059504 00000 n 
+0000059656 00000 n 
+0000062014 00000 n 
+0000062166 00000 n 
+0000064585 00000 n 
+0000064737 00000 n 
+0000066808 00000 n 
+0000066960 00000 n 
+0000069471 00000 n 
+0000069623 00000 n 
+0000071666 00000 n 
+0000071818 00000 n 
+0000074174 00000 n 
+0000074326 00000 n 
+0000076945 00000 n 
+0000077097 00000 n 
+0000079744 00000 n 
+0000079896 00000 n 
+0000082220 00000 n 
+0000082372 00000 n 
+0000085453 00000 n 
+0000085605 00000 n 
+0000087956 00000 n 
+0000088108 00000 n 
+0000092559 00000 n 
+0000092631 00000 n 
+0000092708 00000 n 
+trailer
+<< /Size 74 /Root 1 0 R >>
+startxref
+92778
+%%EOF

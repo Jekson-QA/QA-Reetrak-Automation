@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Reetrak Manual Code Conversion Suite">
+    <test name="Manual Code Conversion Test">
+        <classes>
+            <class name="com.reetrak.automation.tests.FileComparerision.ConvertSerialCodeTypeTest"/>
+        </classes>
+    </test>
+</suite>

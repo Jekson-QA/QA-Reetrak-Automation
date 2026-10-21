@@ -1,0 +1,47 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Reetrak Automation Test Suite" parallel="false">
+    <listeners>
+        <listener class-name="com.reetrak.automation.reports.CustomTestNgReporter"/>
+    </listeners>
+    <test name="Sequential Tests" preserve-order="true">
+        <classes>
+            <!-- Administration Setup -->
+            <class name="com.reetrak.automation.tests.reetrakadmin.reetrakadminTest"/>
+            
+            <!-- Authentication & Basic Access -->
+            <class name="com.reetrak.automation.tests.LoginLogoutTest"/>
+            
+            <!-- Data Master Registrations -->
+            <class name="com.reetrak.automation.tests.datamaster.CompanyMasterTest"/>
+            <class name="com.reetrak.automation.tests.datamaster.PlantMasterTest"/>
+            <class name="com.reetrak.automation.tests.datamaster.RoleMasterTest"/>
+            <class name="com.reetrak.automation.tests.datamaster.UserMasterTest"/>
+            <class name="com.reetrak.automation.tests.datamaster.HierarchyMasterTest"/>
+            <class name="com.reetrak.automation.tests.datamaster.LineMasterTest"/> 
+            
+            <!-- Serial Number & SSCC Configurations -->
+            <class name="com.reetrak.automation.tests.serialmaster.SSCCPoolTest"/>
+            <class name="com.reetrak.automation.tests.serialmaster.SerialManagerTest"/>
+            <!-- <class name="com.reetrak.automation.tests.serialmaster.ExportAndDeleteCodesTest"/>  -->
+            
+            
+            <!-- Production Master Operations -->
+            <class name="com.reetrak.automation.tests.productionmaster.ProductMasterTest"/>
+            <class name="com.reetrak.automation.tests.productionmaster.POMasterTest"/>
+            <!-- <class name="com.reetrak.automation.tests.productionmaster.BatchRequestTest"/> -->
+            <!-- <class name="com.reetrak.automation.tests.productionmaster.ExportBatchDetailsTest"/>
+            <class name="com.reetrak.automation.tests.productionmaster.ManageEventsTest"/>
+            <class name="com.reetrak.automation.tests.productionmaster.ManageDispositionTest"/> -->
+            
+            <!-- Reporting & Document Verification -->
+            <!-- <class name="com.reetrak.automation.tests.report.RelationshipReportTest"/> -->
+            
+            <!-- Warehouse Actions -->
+            <!-- <class name="com.reetrak.automation.tests.warehousemaster.DeaggregationTest"/>
+            <class name="com.reetrak.automation.tests.warehousemaster.ReaggregationTest"/> -->
+            
+            <!-- Catalogue Approvals -->
+            <!-- <class name="com.reetrak.automation.tests.catalogue.InboxTest"/> -->
+        </classes>
+    </test>
+</suite>

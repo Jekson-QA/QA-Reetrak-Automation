@@ -1,0 +1,813 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Count 15 /Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R] >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 4 0 R >> endobj
+4 0 obj << /Length 2642 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (REETRAK AUTOMATION PROJECT GUIDE) Tj
+1 0 0 1 50 774 Tm () Tj
+1 0 0 1 50 758 Tm (1. PROJECT OVERVIEW) Tj
+1 0 0 1 50 742 Tm () Tj
+1 0 0 1 50 726 Tm (This project is a UI automation framework for the Reetrak application. It uses:) Tj
+1 0 0 1 50 710 Tm () Tj
+1 0 0 1 50 694 Tm (* Java 21 for implementation) Tj
+1 0 0 1 50 678 Tm (* Maven for dependency management and execution) Tj
+1 0 0 1 50 662 Tm (* Selenium WebDriver for browser automation) Tj
+1 0 0 1 50 646 Tm (* TestNG for test execution and assertions) Tj
+1 0 0 1 50 630 Tm (* Page Object Model \(POM\) for maintainable page interactions) Tj
+1 0 0 1 50 614 Tm (* WebDriverManager for automatic browser driver setup) Tj
+1 0 0 1 50 598 Tm (* A custom HTML reporter for execution summaries) Tj
+1 0 0 1 50 582 Tm () Tj
+1 0 0 1 50 566 Tm (In simple terms, this project opens a browser, performs actions on the Reetrak login page,) Tj
+1 0 0 1 50 550 Tm (validates expected behavior, captures screenshots, and generates a test report after) Tj
+1 0 0 1 50 534 Tm (execution.) Tj
+1 0 0 1 50 518 Tm () Tj
+1 0 0 1 50 502 Tm (2. WHAT THIS PROJECT IS FOR) Tj
+1 0 0 1 50 486 Tm () Tj
+1 0 0 1 50 470 Tm (Use this project when you want to:) Tj
+1 0 0 1 50 454 Tm () Tj
+1 0 0 1 50 438 Tm (* verify login and logout flows automatically) Tj
+1 0 0 1 50 422 Tm (* validate negative scenarios like blank credentials, invalid users, deactivated users, and) Tj
+1 0 0 1 50 406 Tm (locked users) Tj
+1 0 0 1 50 390 Tm (* run repeated regression checks without manual browser testing) Tj
+1 0 0 1 50 374 Tm (* keep UI test logic organized using reusable page classes) Tj
+1 0 0 1 50 358 Tm (* generate execution evidence with screenshots and HTML summary reports) Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm (This framework is best suited for smoke testing, regression testing, and feature validation) Tj
+1 0 0 1 50 310 Tm (of web-based login-related workflows.) Tj
+1 0 0 1 50 294 Tm () Tj
+1 0 0 1 50 278 Tm (3. WHY THIS FRAMEWORK DESIGN IS USED) Tj
+1 0 0 1 50 262 Tm () Tj
+1 0 0 1 50 246 Tm (JAVA) Tj
+1 0 0 1 50 230 Tm () Tj
+1 0 0 1 50 214 Tm (Java is widely used for enterprise test automation. It works well with Selenium, TestNG,) Tj
+1 0 0 1 50 198 Tm (Maven, reporting libraries, and CI tools.) Tj
+1 0 0 1 50 182 Tm () Tj
+1 0 0 1 50 166 Tm (MAVEN) Tj
+1 0 0 1 50 150 Tm () Tj
+1 0 0 1 50 134 Tm (Maven makes dependency management predictable. It also standardizes how the project is) Tj
+1 0 0 1 50 118 Tm (compiled and how tests are run.) Tj
+1 0 0 1 50 102 Tm () Tj
+1 0 0 1 50 86 Tm (SELENIUM WEBDRIVER) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+5 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 6 0 R >> endobj
+6 0 obj << /Length 2262 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (Selenium controls real browsers like Chrome, Edge, and Firefox. That makes it suitable for) Tj
+1 0 0 1 50 774 Tm (end-to-end UI testing.) Tj
+1 0 0 1 50 758 Tm () Tj
+1 0 0 1 50 742 Tm (TESTNG) Tj
+1 0 0 1 50 726 Tm () Tj
+1 0 0 1 50 710 Tm (TestNG provides:) Tj
+1 0 0 1 50 694 Tm () Tj
+1 0 0 1 50 678 Tm (* test annotations such as `@Test`, `@BeforeMethod`, and `@AfterMethod`) Tj
+1 0 0 1 50 662 Tm (* assertions) Tj
+1 0 0 1 50 646 Tm (* execution ordering using priorities) Tj
+1 0 0 1 50 630 Tm (* suite control through `testng.xml`) Tj
+1 0 0 1 50 614 Tm (* listener support for custom reports) Tj
+1 0 0 1 50 598 Tm () Tj
+1 0 0 1 50 582 Tm (PAGE OBJECT MODEL) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (POM helps separate:) Tj
+1 0 0 1 50 534 Tm () Tj
+1 0 0 1 50 518 Tm (* test logic: what should be validated) Tj
+1 0 0 1 50 502 Tm (* page logic: how elements are located and interacted with) Tj
+1 0 0 1 50 486 Tm () Tj
+1 0 0 1 50 470 Tm (This keeps tests cleaner and makes locator changes easier to maintain.) Tj
+1 0 0 1 50 454 Tm () Tj
+1 0 0 1 50 438 Tm (4. CURRENT PROJECT STRUCTURE) Tj
+1 0 0 1 50 422 Tm () Tj
+1 0 0 1 50 406 Tm (text) Tj
+1 0 0 1 50 390 Tm (Reetrak Automation/) Tj
+1 0 0 1 50 374 Tm (|-- pom.xml) Tj
+1 0 0 1 50 358 Tm (|-- testng.xml) Tj
+1 0 0 1 50 342 Tm (|-- src/) Tj
+1 0 0 1 50 326 Tm (|   |-- main/java/com/reetrak/automation/) Tj
+1 0 0 1 50 310 Tm (|   |   |-- factory/) Tj
+1 0 0 1 50 294 Tm (|   |   |   -- DriverFactory.java) Tj
+1 0 0 1 50 278 Tm (|   |   |-- pages/) Tj
+1 0 0 1 50 262 Tm (|   |   |   |-- BasePage.java) Tj
+1 0 0 1 50 246 Tm (|   |   |   -- LoginPage.java) Tj
+1 0 0 1 50 230 Tm (|   |   -- utilities/) Tj
+1 0 0 1 50 214 Tm (|   |       |-- ConfigReader.java) Tj
+1 0 0 1 50 198 Tm (|   |       |-- ScreenshotUtils.java) Tj
+1 0 0 1 50 182 Tm (|   |       -- WaitUtils.java) Tj
+1 0 0 1 50 166 Tm (|   -- test/) Tj
+1 0 0 1 50 150 Tm (|       |-- java/com/reetrak/automation/) Tj
+1 0 0 1 50 134 Tm (|       |   |-- base/) Tj
+1 0 0 1 50 118 Tm (|       |   |   -- BaseTest.java) Tj
+1 0 0 1 50 102 Tm (|       |   |-- reports/) Tj
+1 0 0 1 50 86 Tm (|       |   |   -- HtmlSummaryReporter.java) Tj
+1 0 0 1 50 70 Tm (|       |   -- tests/) Tj
+ET
+endstream endobj
+7 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 8 0 R >> endobj
+8 0 obj << /Length 2077 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (|       |       -- LoginLogoutTest.java) Tj
+1 0 0 1 50 774 Tm (|       -- resources/) Tj
+1 0 0 1 50 758 Tm (|           -- config.properties) Tj
+1 0 0 1 50 742 Tm (|-- test-output/) Tj
+1 0 0 1 50 726 Tm (|   -- html-summary-report.html) Tj
+1 0 0 1 50 710 Tm (-- target/) Tj
+1 0 0 1 50 694 Tm () Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (5. HOW THE FRAMEWORK WORKS) Tj
+1 0 0 1 50 646 Tm () Tj
+1 0 0 1 50 630 Tm (STEP 1: CONFIGURATION IS LOADED) Tj
+1 0 0 1 50 614 Tm () Tj
+1 0 0 1 50 598 Tm (ConfigReader.java loads values from config.properties. It can also accept JVM system) Tj
+1 0 0 1 50 582 Tm (properties, which means runtime values can override file-based values.) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (Examples:) Tj
+1 0 0 1 50 534 Tm () Tj
+1 0 0 1 50 518 Tm (* `browser=chrome`) Tj
+1 0 0 1 50 502 Tm (* `base.url=http://localhost:8080/...`) Tj
+1 0 0 1 50 486 Tm (* `testdata.username=Tadmin`) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (STEP 2: TEST SETUP STARTS BEFORE EVERY TEST METHOD) Tj
+1 0 0 1 50 438 Tm () Tj
+1 0 0 1 50 422 Tm (BaseTest.java runs setUp\(\) before each test.) Tj
+1 0 0 1 50 406 Tm () Tj
+1 0 0 1 50 390 Tm (It does the following:) Tj
+1 0 0 1 50 374 Tm () Tj
+1 0 0 1 50 358 Tm (* reads `browser`) Tj
+1 0 0 1 50 342 Tm (* reads `base.url`) Tj
+1 0 0 1 50 326 Tm (* reads all `testdata.*` values) Tj
+1 0 0 1 50 310 Tm (* initializes a browser through `DriverFactory`) Tj
+1 0 0 1 50 294 Tm (* stores the active `WebDriver`) Tj
+1 0 0 1 50 278 Tm () Tj
+1 0 0 1 50 262 Tm (This means each test method starts with a fresh browser session.) Tj
+1 0 0 1 50 246 Tm () Tj
+1 0 0 1 50 230 Tm (STEP 3: BROWSER IS CREATED) Tj
+1 0 0 1 50 214 Tm () Tj
+1 0 0 1 50 198 Tm (DriverFactory.java is responsible for browser setup.) Tj
+1 0 0 1 50 182 Tm () Tj
+1 0 0 1 50 166 Tm (It supports:) Tj
+1 0 0 1 50 150 Tm () Tj
+1 0 0 1 50 134 Tm (* Chrome) Tj
+1 0 0 1 50 118 Tm (* Firefox) Tj
+1 0 0 1 50 102 Tm (* Edge) Tj
+1 0 0 1 50 86 Tm () Tj
+1 0 0 1 50 70 Tm (Important details:) Tj
+ET
+endstream endobj
+9 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 10 0 R >> endobj
+10 0 obj << /Length 2345 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm () Tj
+1 0 0 1 50 774 Tm (* WebDriverManager automatically resolves the driver binary) Tj
+1 0 0 1 50 758 Tm (* browser window is maximized) Tj
+1 0 0 1 50 742 Tm (* implicit wait is disabled) Tj
+1 0 0 1 50 726 Tm (* page load timeout is set to 30 seconds) Tj
+1 0 0 1 50 710 Tm (* `ThreadLocal<WebDriver>` is used, which helps if the project later moves toward parallel) Tj
+1 0 0 1 50 694 Tm (execution) Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (STEP 4: PAGE OBJECT INTERACTS WITH THE APPLICATION) Tj
+1 0 0 1 50 646 Tm () Tj
+1 0 0 1 50 630 Tm (LoginPage.java contains locators and reusable methods such as:) Tj
+1 0 0 1 50 614 Tm () Tj
+1 0 0 1 50 598 Tm (* `open\(baseUrl\)`) Tj
+1 0 0 1 50 582 Tm (* `enterUsername\(\)`) Tj
+1 0 0 1 50 566 Tm (* `enterPassword\(\)`) Tj
+1 0 0 1 50 550 Tm (* `clickLogin\(\)`) Tj
+1 0 0 1 50 534 Tm (* `loginAs\(\)`) Tj
+1 0 0 1 50 518 Tm (* `logoutAs\(\)`) Tj
+1 0 0 1 50 502 Tm (* getters for validation messages) Tj
+1 0 0 1 50 486 Tm () Tj
+1 0 0 1 50 470 Tm (This class inherits from BasePage.java, which centralizes common actions:) Tj
+1 0 0 1 50 454 Tm () Tj
+1 0 0 1 50 438 Tm (* typing) Tj
+1 0 0 1 50 422 Tm (* clicking) Tj
+1 0 0 1 50 406 Tm (* reading text) Tj
+1 0 0 1 50 390 Tm () Tj
+1 0 0 1 50 374 Tm (BasePage.java itself relies on WaitUtils.java so interactions wait for visibility or) Tj
+1 0 0 1 50 358 Tm (clickability before acting.) Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm (STEP 5: TEST CLASS VALIDATES BEHAVIOR) Tj
+1 0 0 1 50 310 Tm () Tj
+1 0 0 1 50 294 Tm (LoginLogoutTest.java contains the actual test scenarios.) Tj
+1 0 0 1 50 278 Tm () Tj
+1 0 0 1 50 262 Tm (Current tests cover:) Tj
+1 0 0 1 50 246 Tm () Tj
+1 0 0 1 50 230 Tm (1. blank username and password) Tj
+1 0 0 1 50 214 Tm (2. invalid username with valid password) Tj
+1 0 0 1 50 198 Tm (3. valid username with invalid password) Tj
+1 0 0 1 50 182 Tm (4. valid login) Tj
+1 0 0 1 50 166 Tm (5. logout verification) Tj
+1 0 0 1 50 150 Tm (6. deactivated user verification) Tj
+1 0 0 1 50 134 Tm (7. locked user verification after repeated invalid attempts) Tj
+1 0 0 1 50 118 Tm () Tj
+1 0 0 1 50 102 Tm (These tests call page methods and then use TestNG Assert.assertEquals\(\) to validate the) Tj
+1 0 0 1 50 86 Tm (expected result.) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+11 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 12 0 R >> endobj
+12 0 obj << /Length 2282 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (STEP 6: SCREENSHOTS AND REPORTS ARE GENERATED) Tj
+1 0 0 1 50 774 Tm () Tj
+1 0 0 1 50 758 Tm (After each test:) Tj
+1 0 0 1 50 742 Tm () Tj
+1 0 0 1 50 726 Tm (* `BaseTest.tearDown\(\)` checks whether a screenshot should be captured) Tj
+1 0 0 1 50 710 Tm (* `ScreenshotUtils.java` saves screenshots under `test-output/screenshots/pass` or) Tj
+1 0 0 1 50 694 Tm (`test-output/screenshots/fail`) Tj
+1 0 0 1 50 678 Tm (* `HtmlSummaryReporter.java` creates `test-output/html-summary-report.html`) Tj
+1 0 0 1 50 662 Tm () Tj
+1 0 0 1 50 646 Tm (This gives both visual evidence and a summary report for execution results.) Tj
+1 0 0 1 50 630 Tm () Tj
+1 0 0 1 50 614 Tm (6. WHEN TO USE THIS PROJECT) Tj
+1 0 0 1 50 598 Tm () Tj
+1 0 0 1 50 582 Tm (Use this project:) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (* during daily regression runs) Tj
+1 0 0 1 50 534 Tm (* before releases) Tj
+1 0 0 1 50 518 Tm (* after bug fixes in authentication flows) Tj
+1 0 0 1 50 502 Tm (* in CI/CD pipelines for smoke checks) Tj
+1 0 0 1 50 486 Tm (* when you need repeatable UI validation with screenshots) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (Do not rely on UI tests alone when:) Tj
+1 0 0 1 50 438 Tm () Tj
+1 0 0 1 50 422 Tm (* backend APIs can cover the same check faster) Tj
+1 0 0 1 50 406 Tm (* the feature is still changing too frequently) Tj
+1 0 0 1 50 390 Tm (* the application under test is unstable and causes false failures) Tj
+1 0 0 1 50 374 Tm () Tj
+1 0 0 1 50 358 Tm (A healthy approach is:) Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm (* API tests for business rules) Tj
+1 0 0 1 50 310 Tm (* UI tests for user flow validation) Tj
+1 0 0 1 50 294 Tm () Tj
+1 0 0 1 50 278 Tm (7. HOW TO RUN THE PROJECT) Tj
+1 0 0 1 50 262 Tm () Tj
+1 0 0 1 50 246 Tm (PREREQUISITES) Tj
+1 0 0 1 50 230 Tm () Tj
+1 0 0 1 50 214 Tm (Install and configure:) Tj
+1 0 0 1 50 198 Tm () Tj
+1 0 0 1 50 182 Tm (* Java 21) Tj
+1 0 0 1 50 166 Tm (* Maven) Tj
+1 0 0 1 50 150 Tm (* a supported browser: Chrome, Firefox, or Edge) Tj
+1 0 0 1 50 134 Tm (* the Reetrak application URL must be reachable) Tj
+1 0 0 1 50 118 Tm () Tj
+1 0 0 1 50 102 Tm (STANDARD EXECUTION) Tj
+1 0 0 1 50 86 Tm () Tj
+1 0 0 1 50 70 Tm (Run from the project root:) Tj
+ET
+endstream endobj
+13 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 14 0 R >> endobj
+14 0 obj << /Length 1808 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm () Tj
+1 0 0 1 50 774 Tm (powershell) Tj
+1 0 0 1 50 758 Tm (mvn clean test) Tj
+1 0 0 1 50 742 Tm () Tj
+1 0 0 1 50 726 Tm () Tj
+1 0 0 1 50 710 Tm (RUN ON A SPECIFIC BROWSER) Tj
+1 0 0 1 50 694 Tm () Tj
+1 0 0 1 50 678 Tm (powershell) Tj
+1 0 0 1 50 662 Tm (mvn clean test -Dbrowser=chrome) Tj
+1 0 0 1 50 646 Tm (mvn clean test -Dbrowser=firefox) Tj
+1 0 0 1 50 630 Tm (mvn clean test -Dbrowser=edge) Tj
+1 0 0 1 50 614 Tm () Tj
+1 0 0 1 50 598 Tm () Tj
+1 0 0 1 50 582 Tm (RUN WITH A DIFFERENT URL) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (powershell) Tj
+1 0 0 1 50 534 Tm (mvn clean test -Dbase.url=http://your-server/path) Tj
+1 0 0 1 50 518 Tm () Tj
+1 0 0 1 50 502 Tm () Tj
+1 0 0 1 50 486 Tm (OVERRIDE TEST DATA FROM COMMAND LINE) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (powershell) Tj
+1 0 0 1 50 438 Tm (mvn clean test -Dtestdata.username=MyUser -Dtestdata.password=MyPassword) Tj
+1 0 0 1 50 422 Tm () Tj
+1 0 0 1 50 406 Tm () Tj
+1 0 0 1 50 390 Tm (8. HOW TO READ AND USE THE MAIN FILES) Tj
+1 0 0 1 50 374 Tm () Tj
+1 0 0 1 50 358 Tm (`POM.XML`) Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm (Use this file to:) Tj
+1 0 0 1 50 310 Tm () Tj
+1 0 0 1 50 294 Tm (* add or update dependencies) Tj
+1 0 0 1 50 278 Tm (* update Java version) Tj
+1 0 0 1 50 262 Tm (* control Maven plugins) Tj
+1 0 0 1 50 246 Tm (* define Surefire execution behavior) Tj
+1 0 0 1 50 230 Tm () Tj
+1 0 0 1 50 214 Tm (Current notable dependencies:) Tj
+1 0 0 1 50 198 Tm () Tj
+1 0 0 1 50 182 Tm (* `selenium-java`) Tj
+1 0 0 1 50 166 Tm (* `testng`) Tj
+1 0 0 1 50 150 Tm (* `webdrivermanager`) Tj
+1 0 0 1 50 134 Tm (* `commons-io`) Tj
+1 0 0 1 50 118 Tm (* `slf4j-simple`) Tj
+1 0 0 1 50 102 Tm () Tj
+1 0 0 1 50 86 Tm (`TESTNG.XML`) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+15 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 16 0 R >> endobj
+16 0 obj << /Length 2071 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (Use this file to:) Tj
+1 0 0 1 50 774 Tm () Tj
+1 0 0 1 50 758 Tm (* control which test classes run) Tj
+1 0 0 1 50 742 Tm (* register listeners) Tj
+1 0 0 1 50 726 Tm (* create multiple suites or groups later) Tj
+1 0 0 1 50 710 Tm () Tj
+1 0 0 1 50 694 Tm (Right now it runs LoginLogoutTest and registers HtmlSummaryReporter.) Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (`CONFIG.PROPERTIES`) Tj
+1 0 0 1 50 646 Tm () Tj
+1 0 0 1 50 630 Tm (Use this file for:) Tj
+1 0 0 1 50 614 Tm () Tj
+1 0 0 1 50 598 Tm (* browser selection) Tj
+1 0 0 1 50 582 Tm (* base URL) Tj
+1 0 0 1 50 566 Tm (* test credentials and test data) Tj
+1 0 0 1 50 550 Tm () Tj
+1 0 0 1 50 534 Tm (This is the easiest place to change environment-specific values for local runs.) Tj
+1 0 0 1 50 518 Tm () Tj
+1 0 0 1 50 502 Tm (`BASETEST.JAVA`) Tj
+1 0 0 1 50 486 Tm () Tj
+1 0 0 1 50 470 Tm (Use this class when creating new tests. New test classes should usually extend BaseTest.) Tj
+1 0 0 1 50 454 Tm () Tj
+1 0 0 1 50 438 Tm (It provides:) Tj
+1 0 0 1 50 422 Tm () Tj
+1 0 0 1 50 406 Tm (* initialized `driver`) Tj
+1 0 0 1 50 390 Tm (* `baseUrl`) Tj
+1 0 0 1 50 374 Tm (* `testData`) Tj
+1 0 0 1 50 358 Tm (* setup and teardown lifecycle) Tj
+1 0 0 1 50 342 Tm (* screenshot integration) Tj
+1 0 0 1 50 326 Tm () Tj
+1 0 0 1 50 310 Tm (`BASEPAGE.JAVA`) Tj
+1 0 0 1 50 294 Tm () Tj
+1 0 0 1 50 278 Tm (Use this as the parent class for page objects. Add common actions here when multiple pages) Tj
+1 0 0 1 50 262 Tm (need the same behavior.) Tj
+1 0 0 1 50 246 Tm () Tj
+1 0 0 1 50 230 Tm (`LOGINPAGE.JAVA`) Tj
+1 0 0 1 50 214 Tm () Tj
+1 0 0 1 50 198 Tm (Use this as the model for creating future page objects.) Tj
+1 0 0 1 50 182 Tm () Tj
+1 0 0 1 50 166 Tm (It already demonstrates:) Tj
+1 0 0 1 50 150 Tm () Tj
+1 0 0 1 50 134 Tm (* element location with `@FindBy`) Tj
+1 0 0 1 50 118 Tm (* action methods) Tj
+1 0 0 1 50 102 Tm (* validation getter methods) Tj
+1 0 0 1 50 86 Tm (* workflow methods like `loginAs\(\)`) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+17 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 18 0 R >> endobj
+18 0 obj << /Length 2344 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (9. HOW TO ADD NEW TEST CASES) Tj
+1 0 0 1 50 774 Tm () Tj
+1 0 0 1 50 758 Tm (When adding a new test case, follow this pattern:) Tj
+1 0 0 1 50 742 Tm () Tj
+1 0 0 1 50 726 Tm (1. Identify the user flow to validate.) Tj
+1 0 0 1 50 710 Tm (2. Check whether the required page object already has the needed methods.) Tj
+1 0 0 1 50 694 Tm (3. Add new locators or actions in the relevant page class if needed.) Tj
+1 0 0 1 50 678 Tm (4. Create a new test method in the appropriate test class.) Tj
+1 0 0 1 50 662 Tm (5. Use assertions for expected outcomes.) Tj
+1 0 0 1 50 646 Tm (6. Run the suite and verify the report and screenshots.) Tj
+1 0 0 1 50 630 Tm () Tj
+1 0 0 1 50 614 Tm (EXAMPLE PROCESS) Tj
+1 0 0 1 50 598 Tm () Tj
+1 0 0 1 50 582 Tm (Suppose you want to test "password reset opens correctly":) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (1. Add locator and method in `LoginPage.java`:) Tj
+1 0 0 1 50 534 Tm () Tj
+1 0 0 1 50 518 Tm (java) Tj
+1 0 0 1 50 502 Tm (@FindBy\(xpath = "//a[text\(\)='Forgot Password?']"\)) Tj
+1 0 0 1 50 486 Tm (private WebElement forgotPasswordLink;) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (public void openForgotPassword\(\) {) Tj
+1 0 0 1 50 438 Tm (    click\(forgotPasswordLink\);) Tj
+1 0 0 1 50 422 Tm (}) Tj
+1 0 0 1 50 406 Tm () Tj
+1 0 0 1 50 390 Tm () Tj
+1 0 0 1 50 374 Tm (2. Add a test method in `LoginLogoutTest.java` or a separate dedicated class:) Tj
+1 0 0 1 50 358 Tm () Tj
+1 0 0 1 50 342 Tm (java) Tj
+1 0 0 1 50 326 Tm (@Test) Tj
+1 0 0 1 50 310 Tm (public void forgotPasswordPageShouldOpen\(\) {) Tj
+1 0 0 1 50 294 Tm (    LoginPage loginPage = new LoginPage\(driver\);) Tj
+1 0 0 1 50 278 Tm (    loginPage.open\(baseUrl\);) Tj
+1 0 0 1 50 262 Tm (    loginPage.openForgotPassword\(\);) Tj
+1 0 0 1 50 246 Tm (    Assert.assertTrue\(driver.getCurrentUrl\(\).contains\("forgot-password"\)\);) Tj
+1 0 0 1 50 230 Tm (}) Tj
+1 0 0 1 50 214 Tm () Tj
+1 0 0 1 50 198 Tm () Tj
+1 0 0 1 50 182 Tm (BEST PRACTICE) Tj
+1 0 0 1 50 166 Tm () Tj
+1 0 0 1 50 150 Tm (* keep assertions in test classes) Tj
+1 0 0 1 50 134 Tm (* keep browser interaction in page classes) Tj
+1 0 0 1 50 118 Tm (* keep reusable setup in `BaseTest`) Tj
+1 0 0 1 50 102 Tm () Tj
+1 0 0 1 50 86 Tm (10. HOW TO ADD A NEW PAGE OBJECT) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+19 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 20 0 R >> endobj
+20 0 obj << /Length 2050 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (Create a new class under:) Tj
+1 0 0 1 50 774 Tm () Tj
+1 0 0 1 50 758 Tm (text) Tj
+1 0 0 1 50 742 Tm (src/main/java/com/reetrak/automation/pages/) Tj
+1 0 0 1 50 726 Tm () Tj
+1 0 0 1 50 710 Tm () Tj
+1 0 0 1 50 694 Tm (Example:) Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (java) Tj
+1 0 0 1 50 646 Tm (package com.reetrak.automation.pages;) Tj
+1 0 0 1 50 630 Tm () Tj
+1 0 0 1 50 614 Tm (import org.openqa.selenium.WebDriver;) Tj
+1 0 0 1 50 598 Tm (import org.openqa.selenium.WebElement;) Tj
+1 0 0 1 50 582 Tm (import org.openqa.selenium.support.FindBy;) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (public class DashboardPage extends BasePage {) Tj
+1 0 0 1 50 534 Tm () Tj
+1 0 0 1 50 518 Tm (    @FindBy\(xpath = "//span[contains\(normalize-space\(\), 'Dashboard'\)]"\)) Tj
+1 0 0 1 50 502 Tm (    private WebElement dashboardTitle;) Tj
+1 0 0 1 50 486 Tm () Tj
+1 0 0 1 50 470 Tm (    public DashboardPage\(WebDriver driver\) {) Tj
+1 0 0 1 50 454 Tm (        super\(driver\);) Tj
+1 0 0 1 50 438 Tm (    }) Tj
+1 0 0 1 50 422 Tm () Tj
+1 0 0 1 50 406 Tm (    public String getDashboardTitle\(\) {) Tj
+1 0 0 1 50 390 Tm (        return getText\(dashboardTitle\);) Tj
+1 0 0 1 50 374 Tm (    }) Tj
+1 0 0 1 50 358 Tm (}) Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm () Tj
+1 0 0 1 50 310 Tm (Use a new page object when:) Tj
+1 0 0 1 50 294 Tm () Tj
+1 0 0 1 50 278 Tm (* the application moves to a new screen after an action) Tj
+1 0 0 1 50 262 Tm (* a page contains enough elements and methods that it should be separated for clarity) Tj
+1 0 0 1 50 246 Tm (* multiple tests reuse the same screen behavior) Tj
+1 0 0 1 50 230 Tm () Tj
+1 0 0 1 50 214 Tm (11. HOW TO ADD A NEW TEST CLASS) Tj
+1 0 0 1 50 198 Tm () Tj
+1 0 0 1 50 182 Tm (Create a class under:) Tj
+1 0 0 1 50 166 Tm () Tj
+1 0 0 1 50 150 Tm (text) Tj
+1 0 0 1 50 134 Tm (src/test/java/com/reetrak/automation/tests/) Tj
+1 0 0 1 50 118 Tm () Tj
+1 0 0 1 50 102 Tm () Tj
+1 0 0 1 50 86 Tm (Template:) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+21 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 22 0 R >> endobj
+22 0 obj << /Length 2346 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (java) Tj
+1 0 0 1 50 774 Tm (package com.reetrak.automation.tests;) Tj
+1 0 0 1 50 758 Tm () Tj
+1 0 0 1 50 742 Tm (import com.reetrak.automation.base.BaseTest;) Tj
+1 0 0 1 50 726 Tm (import com.reetrak.automation.pages.LoginPage;) Tj
+1 0 0 1 50 710 Tm (import org.testng.Assert;) Tj
+1 0 0 1 50 694 Tm (import org.testng.annotations.Test;) Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (public class ExampleTest extends BaseTest {) Tj
+1 0 0 1 50 646 Tm () Tj
+1 0 0 1 50 630 Tm (    @Test) Tj
+1 0 0 1 50 614 Tm (    public void sampleTest\(\) {) Tj
+1 0 0 1 50 598 Tm (        LoginPage loginPage = new LoginPage\(driver\);) Tj
+1 0 0 1 50 582 Tm (        loginPage.open\(baseUrl\);) Tj
+1 0 0 1 50 566 Tm (        Assert.assertTrue\(true\);) Tj
+1 0 0 1 50 550 Tm (    }) Tj
+1 0 0 1 50 534 Tm (}) Tj
+1 0 0 1 50 518 Tm () Tj
+1 0 0 1 50 502 Tm () Tj
+1 0 0 1 50 486 Tm (Then register the class in testng.xml if the suite should run it.) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (12. HOW TO UPDATE EXISTING TESTS) Tj
+1 0 0 1 50 438 Tm () Tj
+1 0 0 1 50 422 Tm (Update tests when:) Tj
+1 0 0 1 50 406 Tm () Tj
+1 0 0 1 50 390 Tm (* UI locators change) Tj
+1 0 0 1 50 374 Tm (* expected messages change) Tj
+1 0 0 1 50 358 Tm (* workflow steps change) Tj
+1 0 0 1 50 342 Tm (* the application introduces new validation rules) Tj
+1 0 0 1 50 326 Tm () Tj
+1 0 0 1 50 310 Tm (UPDATE FLOW) Tj
+1 0 0 1 50 294 Tm () Tj
+1 0 0 1 50 278 Tm (1. Check whether the locator failed or the business expectation changed.) Tj
+1 0 0 1 50 262 Tm (2. Update page locators in the page class, not in the test class.) Tj
+1 0 0 1 50 246 Tm (3. Update assertions in tests if the expected output changed.) Tj
+1 0 0 1 50 230 Tm (4. Run the suite again.) Tj
+1 0 0 1 50 214 Tm (5. Review screenshots and HTML report.) Tj
+1 0 0 1 50 198 Tm () Tj
+1 0 0 1 50 182 Tm (EXAMPLE UPDATES) Tj
+1 0 0 1 50 166 Tm () Tj
+1 0 0 1 50 150 Tm (* If a button `id` changes, update the `@FindBy` in the page object.) Tj
+1 0 0 1 50 134 Tm (* If a validation message changes, update the getter target or assertion text.) Tj
+1 0 0 1 50 118 Tm (* If a login step now includes OTP, create new page methods or a new page object.) Tj
+1 0 0 1 50 102 Tm () Tj
+1 0 0 1 50 86 Tm (13. HOW TO UPDATE CONFIGURATION) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+23 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 24 0 R >> endobj
+24 0 obj << /Length 1867 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (Open:) Tj
+1 0 0 1 50 774 Tm () Tj
+1 0 0 1 50 758 Tm (text) Tj
+1 0 0 1 50 742 Tm (src/test/resources/config.properties) Tj
+1 0 0 1 50 726 Tm () Tj
+1 0 0 1 50 710 Tm () Tj
+1 0 0 1 50 694 Tm (Update values such as:) Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (properties) Tj
+1 0 0 1 50 646 Tm (browser=edge) Tj
+1 0 0 1 50 630 Tm (base.url=http://new-server/app) Tj
+1 0 0 1 50 614 Tm (testdata.username=NewAdmin) Tj
+1 0 0 1 50 598 Tm (testdata.password=NewPassword) Tj
+1 0 0 1 50 582 Tm () Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (Use file-based changes when:) Tj
+1 0 0 1 50 534 Tm () Tj
+1 0 0 1 50 518 Tm (* you want a stable local default setup) Tj
+1 0 0 1 50 502 Tm () Tj
+1 0 0 1 50 486 Tm (Use command-line overrides when:) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (* you want temporary environment-specific execution) Tj
+1 0 0 1 50 438 Tm (* you are running in CI/CD) Tj
+1 0 0 1 50 422 Tm (* you do not want to store credentials in files) Tj
+1 0 0 1 50 406 Tm () Tj
+1 0 0 1 50 390 Tm (14. HOW TO UPDATE DEPENDENCIES) Tj
+1 0 0 1 50 374 Tm () Tj
+1 0 0 1 50 358 Tm (Open pom.xml and update the version values in <properties>.) Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm (Examples already present:) Tj
+1 0 0 1 50 310 Tm () Tj
+1 0 0 1 50 294 Tm (* `selenium.version`) Tj
+1 0 0 1 50 278 Tm (* `testng.version`) Tj
+1 0 0 1 50 262 Tm (* `webdrivermanager.version`) Tj
+1 0 0 1 50 246 Tm (* `commons-io.version`) Tj
+1 0 0 1 50 230 Tm (* `slf4j.version`) Tj
+1 0 0 1 50 214 Tm (* `surefire.version`) Tj
+1 0 0 1 50 198 Tm () Tj
+1 0 0 1 50 182 Tm (After updating:) Tj
+1 0 0 1 50 166 Tm () Tj
+1 0 0 1 50 150 Tm (powershell) Tj
+1 0 0 1 50 134 Tm (mvn clean test) Tj
+1 0 0 1 50 118 Tm () Tj
+1 0 0 1 50 102 Tm () Tj
+1 0 0 1 50 86 Tm (Update dependencies when:) Tj
+1 0 0 1 50 70 Tm () Tj
+ET
+endstream endobj
+25 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 26 0 R >> endobj
+26 0 obj << /Length 2016 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (* browser compatibility issues appear) Tj
+1 0 0 1 50 774 Tm (* security fixes are needed) Tj
+1 0 0 1 50 758 Tm (* you want newer Selenium or TestNG features) Tj
+1 0 0 1 50 742 Tm () Tj
+1 0 0 1 50 726 Tm (Be careful:) Tj
+1 0 0 1 50 710 Tm () Tj
+1 0 0 1 50 694 Tm (* large Selenium upgrades can change browser behavior) Tj
+1 0 0 1 50 678 Tm (* plugin upgrades can affect build execution) Tj
+1 0 0 1 50 662 Tm (* browser-driver compatibility should be re-tested after changes) Tj
+1 0 0 1 50 646 Tm () Tj
+1 0 0 1 50 630 Tm (15. HOW REPORTING WORKS) Tj
+1 0 0 1 50 614 Tm () Tj
+1 0 0 1 50 598 Tm (SCREENSHOTS) Tj
+1 0 0 1 50 582 Tm () Tj
+1 0 0 1 50 566 Tm (ScreenshotUtils.java captures screenshots after tests and stores them under:) Tj
+1 0 0 1 50 550 Tm () Tj
+1 0 0 1 50 534 Tm (text) Tj
+1 0 0 1 50 518 Tm (test-output/screenshots/pass) Tj
+1 0 0 1 50 502 Tm (test-output/screenshots/fail) Tj
+1 0 0 1 50 486 Tm () Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (HTML SUMMARY REPORT) Tj
+1 0 0 1 50 438 Tm () Tj
+1 0 0 1 50 422 Tm (HtmlSummaryReporter.java generates:) Tj
+1 0 0 1 50 406 Tm () Tj
+1 0 0 1 50 390 Tm (text) Tj
+1 0 0 1 50 374 Tm (test-output/html-summary-report.html) Tj
+1 0 0 1 50 358 Tm () Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm (It includes:) Tj
+1 0 0 1 50 310 Tm () Tj
+1 0 0 1 50 294 Tm (* total test count) Tj
+1 0 0 1 50 278 Tm (* passed count) Tj
+1 0 0 1 50 262 Tm (* failed count) Tj
+1 0 0 1 50 246 Tm (* skipped count) Tj
+1 0 0 1 50 230 Tm (* duration) Tj
+1 0 0 1 50 214 Tm (* screenshot links) Tj
+1 0 0 1 50 198 Tm (* error messages) Tj
+1 0 0 1 50 182 Tm () Tj
+1 0 0 1 50 166 Tm (Use this report after every run to quickly see what happened.) Tj
+1 0 0 1 50 150 Tm () Tj
+1 0 0 1 50 134 Tm (16. CURRENT STRENGTHS OF THE PROJECT) Tj
+1 0 0 1 50 118 Tm () Tj
+1 0 0 1 50 102 Tm (* clean use of Page Object Model) Tj
+1 0 0 1 50 86 Tm (* centralized driver setup) Tj
+1 0 0 1 50 70 Tm (* reusable configuration handling) Tj
+ET
+endstream endobj
+27 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 28 0 R >> endobj
+28 0 obj << /Length 2298 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (* custom HTML reporting) Tj
+1 0 0 1 50 774 Tm (* screenshot evidence) Tj
+1 0 0 1 50 758 Tm (* support for multiple browsers) Tj
+1 0 0 1 50 742 Tm (* reasonable test lifecycle organization using `BaseTest`) Tj
+1 0 0 1 50 726 Tm () Tj
+1 0 0 1 50 710 Tm (17. CURRENT LIMITATIONS AND IMPROVEMENT IDEAS) Tj
+1 0 0 1 50 694 Tm () Tj
+1 0 0 1 50 678 Tm (These are important if you continue growing the framework.) Tj
+1 0 0 1 50 662 Tm () Tj
+1 0 0 1 50 646 Tm (`THREAD.SLEEP\(\)` IS USED IN TESTS AND PAGE METHODS) Tj
+1 0 0 1 50 630 Tm () Tj
+1 0 0 1 50 614 Tm (This makes tests slower and more brittle. Prefer explicit waits through WaitUtils.) Tj
+1 0 0 1 50 598 Tm () Tj
+1 0 0 1 50 582 Tm (LOGIN AND LOGOUT ARE STILL TIGHTLY COUPLED TO ONE PAGE CLASS) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (As the application grows, create dedicated page classes such as:) Tj
+1 0 0 1 50 534 Tm () Tj
+1 0 0 1 50 518 Tm (* `DashboardPage`) Tj
+1 0 0 1 50 502 Tm (* `ProfileMenuComponent`) Tj
+1 0 0 1 50 486 Tm (* `ForgotPasswordPage`) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (CREDENTIALS ARE STORED IN A PLAIN PROPERTIES FILE) Tj
+1 0 0 1 50 438 Tm () Tj
+1 0 0 1 50 422 Tm (This is acceptable for local testing, but sensitive data should eventually move to:) Tj
+1 0 0 1 50 406 Tm () Tj
+1 0 0 1 50 390 Tm (* environment variables) Tj
+1 0 0 1 50 374 Tm (* CI secret storage) Tj
+1 0 0 1 50 358 Tm (* encrypted vault solutions) Tj
+1 0 0 1 50 342 Tm () Tj
+1 0 0 1 50 326 Tm (ASSERTIONS USE EXACT UI STRINGS) Tj
+1 0 0 1 50 310 Tm () Tj
+1 0 0 1 50 294 Tm (That is okay for now, but minor wording changes can break tests. Where suitable, combine) Tj
+1 0 0 1 50 278 Tm (message validation with presence or workflow validation.) Tj
+1 0 0 1 50 262 Tm () Tj
+1 0 0 1 50 246 Tm (ONE SUITE FILE CURRENTLY RUNS ONE TEST CLASS) Tj
+1 0 0 1 50 230 Tm () Tj
+1 0 0 1 50 214 Tm (As the framework grows, organize suites by:) Tj
+1 0 0 1 50 198 Tm () Tj
+1 0 0 1 50 182 Tm (* smoke) Tj
+1 0 0 1 50 166 Tm (* regression) Tj
+1 0 0 1 50 150 Tm (* sanity) Tj
+1 0 0 1 50 134 Tm (* module-specific execution) Tj
+1 0 0 1 50 118 Tm () Tj
+1 0 0 1 50 102 Tm (18. RECOMMENDED USAGE PATTERN FOR TEAM MEMBERS) Tj
+1 0 0 1 50 86 Tm () Tj
+1 0 0 1 50 70 Tm (FOR A TESTER) Tj
+ET
+endstream endobj
+29 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 30 0 R >> endobj
+30 0 obj << /Length 2394 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm () Tj
+1 0 0 1 50 774 Tm (* update `config.properties`) Tj
+1 0 0 1 50 758 Tm (* run `mvn clean test`) Tj
+1 0 0 1 50 742 Tm (* open the HTML report) Tj
+1 0 0 1 50 726 Tm (* inspect screenshots for failed scenarios) Tj
+1 0 0 1 50 710 Tm () Tj
+1 0 0 1 50 694 Tm (FOR AN AUTOMATION ENGINEER) Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (* add or update page objects) Tj
+1 0 0 1 50 646 Tm (* add reusable methods in `BasePage`) Tj
+1 0 0 1 50 630 Tm (* add new tests in the test package) Tj
+1 0 0 1 50 614 Tm (* improve waits and reporting) Tj
+1 0 0 1 50 598 Tm () Tj
+1 0 0 1 50 582 Tm (FOR CI/CD) Tj
+1 0 0 1 50 566 Tm () Tj
+1 0 0 1 50 550 Tm (* use command-line system properties for environment selection) Tj
+1 0 0 1 50 534 Tm (* archive `test-output` as a build artifact) Tj
+1 0 0 1 50 518 Tm (* publish the HTML report if your pipeline supports it) Tj
+1 0 0 1 50 502 Tm () Tj
+1 0 0 1 50 486 Tm (19. SUGGESTED FUTURE ENHANCEMENTS) Tj
+1 0 0 1 50 470 Tm () Tj
+1 0 0 1 50 454 Tm (* replace `Thread.sleep\(\)` with explicit waits) Tj
+1 0 0 1 50 438 Tm (* add log utility support) Tj
+1 0 0 1 50 422 Tm (* support headless browser execution) Tj
+1 0 0 1 50 406 Tm (* introduce environment profiles such as dev, qa, uat) Tj
+1 0 0 1 50 390 Tm (* add data-driven testing with `@DataProvider`) Tj
+1 0 0 1 50 374 Tm (* add retry logic only where justified) Tj
+1 0 0 1 50 358 Tm (* add Allure or ExtentReports if richer reporting is needed) Tj
+1 0 0 1 50 342 Tm (* add parallel-safe test design before enabling parallel execution) Tj
+1 0 0 1 50 326 Tm () Tj
+1 0 0 1 50 310 Tm (20. QUICK START FOR ADDING AND UPDATING) Tj
+1 0 0 1 50 294 Tm () Tj
+1 0 0 1 50 278 Tm (TO ADD A NEW TEST) Tj
+1 0 0 1 50 262 Tm () Tj
+1 0 0 1 50 246 Tm (1. Extend `BaseTest`) Tj
+1 0 0 1 50 230 Tm (2. Reuse or create a page object) Tj
+1 0 0 1 50 214 Tm (3. Add actions in the page object) Tj
+1 0 0 1 50 198 Tm (4. Add assertions in the test) Tj
+1 0 0 1 50 182 Tm (5. Register the class in `testng.xml`) Tj
+1 0 0 1 50 166 Tm (6. Run Maven tests) Tj
+1 0 0 1 50 150 Tm () Tj
+1 0 0 1 50 134 Tm (TO UPDATE AN EXISTING FLOW) Tj
+1 0 0 1 50 118 Tm () Tj
+1 0 0 1 50 102 Tm (1. Update locator or method in the page object) Tj
+1 0 0 1 50 86 Tm (2. Update test assertion if behavior changed) Tj
+1 0 0 1 50 70 Tm (3. Update config if credentials or URL changed) Tj
+ET
+endstream endobj
+31 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 33 0 R >> >> /Contents 32 0 R >> endobj
+32 0 obj << /Length 2561 >> stream
+BT
+/F1 10 Tf
+1 0 0 1 50 790 Tm (4. Run tests and review report) Tj
+1 0 0 1 50 774 Tm () Tj
+1 0 0 1 50 758 Tm (TO UPDATE DEPENDENCIES) Tj
+1 0 0 1 50 742 Tm () Tj
+1 0 0 1 50 726 Tm (1. Modify version properties in `pom.xml`) Tj
+1 0 0 1 50 710 Tm (2. Run `mvn clean test`) Tj
+1 0 0 1 50 694 Tm (3. fix any compatibility issues) Tj
+1 0 0 1 50 678 Tm () Tj
+1 0 0 1 50 662 Tm (21. IMPORTANT FILES REFERENCE) Tj
+1 0 0 1 50 646 Tm () Tj
+1 0 0 1 50 630 Tm (* `pom.xml`: build, dependency, and plugin management) Tj
+1 0 0 1 50 614 Tm (* `testng.xml`: suite definition and listener registration) Tj
+1 0 0 1 50 598 Tm (* `src/test/resources/config.properties`: runtime configuration and test data) Tj
+1 0 0 1 50 582 Tm (* `src/test/java/com/reetrak/automation/base/BaseTest.java`: test lifecycle) Tj
+1 0 0 1 50 566 Tm (* `src/main/java/com/reetrak/automation/factory/DriverFactory.java`: browser setup) Tj
+1 0 0 1 50 550 Tm (* `src/main/java/com/reetrak/automation/pages/BasePage.java`: shared page actions) Tj
+1 0 0 1 50 534 Tm (* `src/main/java/com/reetrak/automation/pages/LoginPage.java`: login/logout page actions and) Tj
+1 0 0 1 50 518 Tm (validations) Tj
+1 0 0 1 50 502 Tm (* `src/main/java/com/reetrak/automation/utilities/WaitUtils.java`: explicit waits) Tj
+1 0 0 1 50 486 Tm (* `src/main/java/com/reetrak/automation/utilities/ScreenshotUtils.java`: screenshot capture) Tj
+1 0 0 1 50 470 Tm (* `src/test/java/com/reetrak/automation/reports/HtmlSummaryReporter.java`: HTML reporting) Tj
+1 0 0 1 50 454 Tm (* `src/test/java/com/reetrak/automation/tests/LoginLogoutTest.java`: actual login/logout) Tj
+1 0 0 1 50 438 Tm (scenarios) Tj
+1 0 0 1 50 422 Tm () Tj
+1 0 0 1 50 406 Tm (22. FINAL SUMMARY) Tj
+1 0 0 1 50 390 Tm () Tj
+1 0 0 1 50 374 Tm (This project is a maintainable Selenium TestNG UI automation framework built for Reetrak) Tj
+1 0 0 1 50 358 Tm (login-related verification. Its main purpose is to automate authentication checks, reduce) Tj
+1 0 0 1 50 342 Tm (manual regression effort, and provide execution proof through reports and screenshots.) Tj
+1 0 0 1 50 326 Tm () Tj
+1 0 0 1 50 310 Tm (Use it when you need reliable browser-based validation. Add to it by creating new page) Tj
+1 0 0 1 50 294 Tm (objects and tests. Update it by changing locators, assertions, configuration, and dependency) Tj
+1 0 0 1 50 278 Tm (versions in the correct layers. If you keep page actions, test assertions, configuration,) Tj
+1 0 0 1 50 262 Tm (and reporting well separated, this framework will remain easy to extend over time.) Tj
+ET
+endstream endobj
+33 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+xref
+0 34
+0000000000 65535 f 
+0000000010 00000 n 
+0000000060 00000 n 
+0000000214 00000 n 
+0000000342 00000 n 
+0000003036 00000 n 
+0000003164 00000 n 
+0000005478 00000 n 
+0000005606 00000 n 
+0000007735 00000 n 
+0000007864 00000 n 
+0000010262 00000 n 
+0000010392 00000 n 
+0000012727 00000 n 
+0000012857 00000 n 
+0000014718 00000 n 
+0000014848 00000 n 
+0000016972 00000 n 
+0000017102 00000 n 
+0000019499 00000 n 
+0000019629 00000 n 
+0000021732 00000 n 
+0000021862 00000 n 
+0000024261 00000 n 
+0000024391 00000 n 
+0000026311 00000 n 
+0000026441 00000 n 
+0000028510 00000 n 
+0000028640 00000 n 
+0000030991 00000 n 
+0000031121 00000 n 
+0000033568 00000 n 
+0000033698 00000 n 
+0000036312 00000 n 
+trailer
+<< /Size 34 /Root 1 0 R >>
+startxref
+36384
+%%EOF
