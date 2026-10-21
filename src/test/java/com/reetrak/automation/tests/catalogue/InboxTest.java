@@ -92,6 +92,7 @@ public class InboxTest extends BaseTest {
 
             ProductMasterPage productPage = new ProductMasterPage(driver);
             productPage.openProductMaster();
+            system.out.println("Hello");
         }
     }
 }
