@@ -16,7 +16,8 @@ public class reetrakadminTest extends BaseTest {
 
         @Test(priority = 1, description = "Verification of Add Company Details functionality.")
         public void verifyAddCompanyFunctionality() throws Exception {
-                Map<String, String> reetrakAdminData = pageData(REETRAK_ADMIN_SHEET, "ReetrakAdmin_TC_01");
+                Map<String, String> reetrakAdminData = pageData(REETRAK_ADMIN_SHEET,
+                                "ReetrakAdmin_TC_01");
                 LoginLogoutPage loginPage = new LoginLogoutPage(driver);
                 loginPage.open(baseUrl);
                 loginPage.loginAs("Reetrakadmin", "password");
@@ -39,7 +40,8 @@ public class reetrakadminTest extends BaseTest {
 
         @Test(priority = 2, description = "Verification of Add License Details functionality.")
         public void verifyAddLicenseFunctionality() throws Exception {
-                Map<String, String> reetrakAdminData = pageData(REETRAK_ADMIN_SHEET, "ReetrakAdmin_TC_02");
+                Map<String, String> reetrakAdminData = pageData(REETRAK_ADMIN_SHEET,
+                                "ReetrakAdmin_TC_02");
                 LoginLogoutPage loginPage = new LoginLogoutPage(driver);
                 loginPage.open(baseUrl);
                 loginPage.loginAs("Reetrakadmin", "password");
@@ -52,14 +54,13 @@ public class reetrakadminTest extends BaseTest {
 
         @Test(priority = 3, description = "Verification of Server Restart functionality.")
         public void verifyServerRestartFunctionality() throws Exception {
+                Map<String, String> reetrakAdminData = pageData(REETRAK_ADMIN_SHEET, "ReetrakAdmin_TC_03");
                 LoginLogoutPage loginPage = new LoginLogoutPage(driver);
                 reetrakadminPage reetrakadminPage = new reetrakadminPage(driver);
-                // Call restartService after the assertions of Test Case 2
-                // reetrakadminPage.restartService("Apache Tomcat 8.5 Tomcat8_Reetrak");
-                reetrakadminPage.restartService("Apache Tomcat 8.5 Tomcat8");
+                reetrakadminPage.restartService(
+                                com.reetrak.automation.utilities.ConfigReader.getRequired("service.name"));
                 loginPage.open(baseUrl);
-                Assert.assertEquals(loginPage.getLoginTitle(), "LOG IN",
-                                "User should be redirected to the Login page.");
+                Assert.assertEquals(loginPage.getLoginTitle(), value(reetrakAdminData, "Expected Message or Title"));
         }
 
         @Test(priority = 4, description = "Verification of Update Role functionality.")

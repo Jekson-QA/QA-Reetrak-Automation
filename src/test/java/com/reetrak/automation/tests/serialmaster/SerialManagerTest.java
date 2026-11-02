@@ -41,7 +41,7 @@ public class SerialManagerTest extends BaseTest {
                 Assert.assertEquals(serialManagerPage.getSaveButtonStatus(), value(SerialManagerData, "Button Status"));
         }
 
-        @Test(priority = 3, description = "Verify the functionality of the Add JEKSON Serial Manager.")
+        @Test(priority = 3, description = "Verify the functionality of the Add JEKSON Serial Manager with 14 digit code length.")
         public void verifyAddSNMAnagerFunctionality() throws Exception {
                 Map<String, String> loginData = pageData(LOGIN_SHEET, "Login-Logout_TC_04");
                 Map<String, String> SerialManagerData = pageData(SERIAL_MANAGER_SHEET, "Serial-Master_TC_03");
@@ -54,15 +54,15 @@ public class SerialManagerTest extends BaseTest {
                                 value(SerialManagerData, "Serial Code Type"),
                                 value(SerialManagerData, "Serial Code Length"),
                                 value(SerialManagerData, "Serial Master"), value(SerialManagerData, "SSCC Pool 1"),
-                                value(SerialManagerData, "SSCC Pool 2"),
+                                null,
                                 value(SerialManagerData, "Partial SSCC Pool 1"),
-                                value(SerialManagerData, "Partial SSCC Pool 2"));
+                                null);
                 Thread.sleep(2000);
                 Assert.assertEquals(serialManagerPage.getNotificationMessage(),
                                 value(SerialManagerData, "Expected Message or Title"));
         }
 
-        @Test(priority = 4, description = "Verify the functionality of the Add JEKSON Serial Manager.")
+        @Test(priority = 4, description = "Verify the functionality of the Add JEKSON Serial Manager with 20 digit code length.")
         public void verifyAddSNMAnager1Functionality() throws Exception {
                 Map<String, String> loginData = pageData(LOGIN_SHEET, "Login-Logout_TC_04");
                 Map<String, String> SerialManagerData = pageData(SERIAL_MANAGER_SHEET, "Serial-Master_TC_04");
@@ -307,4 +307,25 @@ public class SerialManagerTest extends BaseTest {
                                 value(SerialManagerData, "Expected Message or Title"));
         }
 
+        @Test(priority = 17, description = "Verify the functionality of the Add JEKSON Serial Manager with 20 digit code length.")
+        public void verifyAddSNMAnager2Functionality() throws Exception {
+                Map<String, String> loginData = pageData(LOGIN_SHEET, "Login-Logout_TC_04");
+                Map<String, String> SerialManagerData = pageData(SERIAL_MANAGER_SHEET, "Serial-Master_TC_17");
+                LoginLogoutPage loginPage = new LoginLogoutPage(driver);
+                loginPage.open(baseUrl);
+                loginPage.loginAs(value(loginData, "username"), value(loginData, "password"));
+                SerialManagerPage serialManagerPage = new SerialManagerPage(driver);
+                serialManagerPage.openSerialManager();
+                serialManagerPage.AddSerialManager("Add", value(SerialManagerData, "Name"),
+                                value(SerialManagerData, "Serial Code Type"),
+                                value(SerialManagerData, "Serial Code Length"),
+                                value(SerialManagerData, "Serial Master"),
+                                value(SerialManagerData, "SSCC Pool 1"),
+                                value(SerialManagerData, "SSCC Pool 2"),
+                                value(SerialManagerData, "Partial SSCC Pool 1"),
+                                value(SerialManagerData, "Partial SSCC Pool 2"));
+                Thread.sleep(2000);
+                Assert.assertEquals(serialManagerPage.getNotificationMessage(),
+                                value(SerialManagerData, "Expected Message or Title"));
+        }
 }

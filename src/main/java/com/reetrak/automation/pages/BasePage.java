@@ -78,19 +78,34 @@ public abstract class BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         waitUtils.waitForElementToBeClickable(element);
         click(element);
-        String noSpaceHyphen = value.replaceAll("\\s*-\\s*", "-");
-        String poolNumberOnly = value.contains("-") ? value.substring(value.lastIndexOf("-") + 1).trim() : value;
 
-        By optionLocator = By
-                .xpath("//mat-option[contains(normalize-space(), '" + value + "')]"
-                        + " | //mat-option[contains(normalize-space(), '" + noSpaceHyphen + "')]"
-                        + " | //mat-option[contains(normalize-space(), '" + poolNumberOnly + "')]"
-                        + " | //mat-option//span[contains(normalize-space(), '" + value + "')]"
-                        + " | //mat-option//span[contains(normalize-space(), '" + noSpaceHyphen + "')]"
-                        + " | //mat-option//span[contains(normalize-space(), '" + poolNumberOnly + "')]"
-                        + " | //mat-option[normalize-space()='" + value + "']"
-                        + " | //mat-option//span[normalize-space()='" + value + "']"
-                        + " | //mat-option//span[normalize-space()='" + value.toUpperCase() + "']");
+        // Wait for at least one mat-option to appear in the DOM before resolving the
+        // locator
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-option")));
+
+        String noSpaceHyphen = value.replaceAll("\\s*-\\s*", "-");
+        // Only use poolNumberOnly as a fallback when value has spaces around hyphen
+        // (e.g. "2 - 8900123")
+        // Avoid loose partial matches on values like "2-8900123" where noSpaceHyphen
+        // already handles it
+        String poolNumberOnly = (value.contains(" - "))
+                ? value.substring(value.lastIndexOf("-") + 1).trim()
+                : null;
+
+        String xpath = "//mat-option[contains(normalize-space(), '" + value + "')]"
+                + " | //mat-option[contains(normalize-space(), '" + noSpaceHyphen + "')]"
+                + " | //mat-option//span[contains(normalize-space(), '" + value + "')]"
+                + " | //mat-option//span[contains(normalize-space(), '" + noSpaceHyphen + "')]"
+                + " | //mat-option[normalize-space()='" + value + "']"
+                + " | //mat-option//span[normalize-space()='" + value + "']"
+                + " | //mat-option//span[normalize-space()='" + value.toUpperCase() + "']";
+
+        if (poolNumberOnly != null) {
+            xpath += " | //mat-option[contains(normalize-space(), '" + poolNumberOnly + "')]"
+                    + " | //mat-option//span[contains(normalize-space(), '" + poolNumberOnly + "')]";
+        }
+
+        By optionLocator = By.xpath(xpath);
         boolean clicked = false;
         for (int attempts = 0; attempts < 3; attempts++) {
             try {

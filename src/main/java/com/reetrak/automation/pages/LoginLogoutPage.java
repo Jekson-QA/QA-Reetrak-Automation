@@ -60,12 +60,13 @@ public class LoginLogoutPage extends BasePage {
         enterUsername(username);
         enterPassword(password);
         try {
-            waitUtils.customewaitForVisibility(fingerprintimage, 2).isDisplayed();
+            waitUtils.customewaitForVisibility(fingerprintimage, 120).isDisplayed();
             System.out.println(" Finger Print is eanbled ->>>>>");
         } catch (Exception e) {
             System.out.println(" Finger Print is not eanbled ->>>>>");
         }
         // waitUtils.waitForVisibility(fingerprintimage).isDisplayed();
+        Thread.sleep(500);
         clickLogin();
         try {
             Thread.sleep(1000);
@@ -163,7 +164,8 @@ public class LoginLogoutPage extends BasePage {
     }
 
     // ----- Old Reetrak UI-------
-    // @FindBy(xpath = "//mat-error[@id='mat-error-0' and text()=' Please enter valid user Name']")
+    // @FindBy(xpath = "//mat-error[@id='mat-error-0' and text()=' Please enter
+    // valid user Name']")
     // private WebElement UsernameTitle;
 
     // ----- New Reetrak UI-------
@@ -176,7 +178,8 @@ public class LoginLogoutPage extends BasePage {
     }
 
     // ----- Old Reetrak UI-------
-    // @FindBy(xpath = "//mat-error[@id='mat-error-1' and text()=' Please enter valid Password']")
+    // @FindBy(xpath = "//mat-error[@id='mat-error-1' and text()=' Please enter
+    // valid Password']")
     // private WebElement PasswordTitle;
 
     // ----- New Reetrak UI-------
