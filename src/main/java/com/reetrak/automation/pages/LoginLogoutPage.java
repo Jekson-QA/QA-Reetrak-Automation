@@ -188,4 +188,6 @@ public class LoginLogoutPage extends BasePage {
         return getText(PasswordTitle);
     }
 
+    System.out.println("Dashboard Title: " + getDashbaordTitle());
+
 }
