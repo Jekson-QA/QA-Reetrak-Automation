@@ -187,7 +187,4 @@ public class LoginLogoutPage extends BasePage {
         waitUtils.waitForVisibility(PasswordTitle).isDisplayed();
         return getText(PasswordTitle);
     }
-
-    System.out.println("Dashboard Title: " + getDashbaordTitle());
-
 }
