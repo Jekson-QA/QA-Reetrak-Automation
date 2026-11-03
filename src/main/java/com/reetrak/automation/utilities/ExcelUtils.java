@@ -267,7 +267,7 @@ public final class ExcelUtils {
         Sheet sheet = workbook.createSheet(sheetName);
         writeRow(sheet, 0, "testCase", "url", "logoPath", "address1", "address2",
                 "pinCode", "city", "state", "country", "action", "expectedMessage");
-        writeRow(sheet, 1, "update_company", "WWW.Jekson.co.in", "D:\\jeksonvisionlogo1.png",
+        writeRow(sheet, 1, "update_company", "WWW.Jekson.co.in", "src/test/resources/Logo and PRN/Jekson vision.png",
                 "304, SARKHEJ-BAVLA HIGHWAY", "CHANGODAR", "382213", "AHMEDABAD",
                 "GUJARAT", "INDIA", "Save", "Company details Successfully updated.");
     }

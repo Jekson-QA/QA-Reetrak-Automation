@@ -896,11 +896,11 @@ public class ProductMasterPage extends BasePage {
 
             if (prnFileLocation != null && !prnFileLocation.isBlank()) {
                 Thread.sleep(500);
-                prnFileInput.sendKeys(prnFileLocation);
+                prnFileInput.sendKeys(resolveFilePath(prnFileLocation));
             }
             if (imageFilePath != null && !imageFilePath.isBlank()) {
                 Thread.sleep(500);
-                imageFileInput.sendKeys(imageFilePath);
+                imageFileInput.sendKeys(resolveFilePath(imageFilePath));
             }
 
             if (isPartialApplicable && partialVal != null && !partialVal.isBlank()) {
@@ -923,11 +923,11 @@ public class ProductMasterPage extends BasePage {
                         }
                         if (partialPrnVal != null && !partialPrnVal.isBlank()) {
                             Thread.sleep(500);
-                            partialPRNFileInput.sendKeys(partialPrnVal);
+                            partialPRNFileInput.sendKeys(resolveFilePath(partialPrnVal));
                         }
                         if (partialImageVal != null && !partialImageVal.isBlank()) {
                             Thread.sleep(500);
-                            partialImageFileInput.sendKeys(partialImageVal);
+                            partialImageFileInput.sendKeys(resolveFilePath(partialImageVal));
                         }
                     } else if (targetPartial.equalsIgnoreCase("No")) {
                         selectFromDropDown(partialDropdown, "No");
@@ -939,11 +939,11 @@ public class ProductMasterPage extends BasePage {
                     }
                     if (partialPrnVal != null && !partialPrnVal.isBlank()) {
                         Thread.sleep(500);
-                        partialPRNFileInput.sendKeys(partialPrnVal);
+                        partialPRNFileInput.sendKeys(resolveFilePath(partialPrnVal));
                     }
                     if (partialImageVal != null && !partialImageVal.isBlank()) {
                         Thread.sleep(500);
-                        partialImageFileInput.sendKeys(partialImageVal);
+                        partialImageFileInput.sendKeys(resolveFilePath(partialImageVal));
                     }
                 }
             }

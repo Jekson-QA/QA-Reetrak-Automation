@@ -9,6 +9,7 @@ import com.reetrak.automation.base.BaseTest;
 
 import com.reetrak.automation.pages.LoginLogoutPage;
 import com.reetrak.automation.pages.reetrakadmin.reetrakadminPage;
+import com.reetrak.automation.utilities.ConfigReader;
 
 public class reetrakadminTest extends BaseTest {
 
@@ -46,8 +47,8 @@ public class reetrakadminTest extends BaseTest {
                 loginPage.open(baseUrl);
                 loginPage.loginAs("Reetrakadmin", "password");
                 reetrakadminPage reetrakadminPage = new reetrakadminPage(driver);
-                reetrakadminPage.addLicense(
-                                value(reetrakAdminData, "LicenseKey/Phone"));
+                reetrakadminPage.addLicense(ConfigReader.get("license.key",
+                                value(reetrakAdminData, "LicenseKey/Phone")));
                 Assert.assertEquals(reetrakadminPage.getNotificationMessage(),
                                 value(reetrakAdminData, "Expected Message or Title"));
         }

@@ -155,7 +155,7 @@ public class reetrakadminPage extends BasePage {
         type(companyPrefixInput, CompanyPrefix);
         selectFromDropDown(snLengthDropdown, SNLength);
         type(urlElement, URL);
-        logoInput.sendKeys(logopath);
+        logoInput.sendKeys(resolveFilePath(logopath));
         scrollToElement(countryInput);
         type(address1Input, address1);
         type(address2Input, address2);

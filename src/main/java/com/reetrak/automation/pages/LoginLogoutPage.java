@@ -60,7 +60,7 @@ public class LoginLogoutPage extends BasePage {
         enterUsername(username);
         enterPassword(password);
         try {
-            waitUtils.customewaitForVisibility(fingerprintimage, 120).isDisplayed();
+            waitUtils.customewaitForVisibility(fingerprintimage, 5).isDisplayed();
             System.out.println(" Finger Print is eanbled ->>>>>");
         } catch (Exception e) {
             System.out.println(" Finger Print is not eanbled ->>>>>");

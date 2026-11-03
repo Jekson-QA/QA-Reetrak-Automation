@@ -221,7 +221,7 @@ public class CompanyMasterPage extends BasePage {
             return;
         }
         Thread.sleep(1000);
-        logoInput.sendKeys(logoPath);
+        logoInput.sendKeys(resolveFilePath(logoPath));
     }
 
     public String refreshButton() throws Exception {

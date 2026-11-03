@@ -11,6 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -52,6 +56,56 @@ public abstract class BasePage {
     protected void typeAndEnter(WebElement element, String value) {
         type(element, value);
         element.sendKeys(Keys.ENTER);
+    }
+
+    /**
+     * Resolves a file path (relative or absolute) to an absolute system path for
+     * Selenium file uploads.
+     * Supports relative paths from project root, resources, subfolders, or raw
+     * filenames.
+     *
+     * @param filePath The file path provided from test data / Excel
+     * @return Absolute file path on the system
+     */
+    protected String resolveFilePath(String filePath) {
+        if (filePath == null || filePath.trim().isEmpty()) {
+            return filePath;
+        }
+        String trimmed = filePath.trim();
+        File file = new File(trimmed);
+        if (file.isAbsolute()) {
+            return file.getAbsolutePath();
+        }
+
+        // 1. Direct relative path from project root (e.g. src/test/resources/Logo and
+        // PRN/...)
+        Path projectPath = Paths.get(System.getProperty("user.dir"), trimmed).normalize();
+        if (Files.exists(projectPath)) {
+            return projectPath.toAbsolutePath().toString();
+        }
+
+        // 2. Relative to src/test/resources (e.g. Logo and PRN/...)
+        Path resourcePath = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", trimmed).normalize();
+        if (Files.exists(resourcePath)) {
+            return resourcePath.toAbsolutePath().toString();
+        }
+
+        // 3. Check inside Logo and PRN subfolders if only filename was given
+        Path prnFolder = Paths
+                .get(System.getProperty("user.dir"), "src", "test", "resources", "Logo and PRN", "PRN and PNG", trimmed)
+                .normalize();
+        if (Files.exists(prnFolder)) {
+            return prnFolder.toAbsolutePath().toString();
+        }
+
+        Path logoFolder = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "Logo and PRN", trimmed)
+                .normalize();
+        if (Files.exists(logoFolder)) {
+
+            return logoFolder.toAbsolutePath().toString();
+        }
+
+        return projectPath.toAbsolutePath().toString();
     }
 
     protected void click(WebElement element) {

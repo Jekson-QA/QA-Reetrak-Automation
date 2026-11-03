@@ -1,0 +1,55 @@
+########--TEST PRN FOR SEC--#########
+
+C:\Program Files\JVPL\REETRAK_PRN
+
+CASE              : JEK_CASENO
+LOT Number        : JEK_LOT
+PO Number	      : JEK_PONUM
+PO Digit          : JEK_PODIGIT
+Serial Number     : JEK_SRNO
+GTIN              : JEK_GTIN
+Partial or Not    : JEK_PS
+
+---------Crypto Code-------
+
+91 			      : JEK_91
+92 			      : JEK_92
+
+---------Crypto Code-------
+
+Product Name      : JEK_PRD_NAME
+Product code      : JEK_PRD_CODE
+Product Desc      : JEK_PRD_DESC
+
+Product Name(R)   : JEK_PRODNAME
+Product code(R)   : JEK_PRODCODE
+Product Desc(R)   : JEK_PRODDESC
+
+EXPOCR		      : JEK_EXPOCR
+EXP			      : JEK_EXP
+MFGOCR            : JEK_MFGOCR
+MFG			      : JEK_MFG
+			      
+Quantity 	      : JEK_QTY
+Quantity (US)     : JEK_US_QTY
+Salable QTY	      : JEK_S_QTY
+Unit Price	      : JEK_UNITPRICE
+Final Price	      : JEK_PRICE
+			      
+NDC			      : JEK_NDC
+Extra Field-1     : JEK_EXT-1
+Extra Field-2     : JEK_EXT-2
+Extra Field-3     : JEK_EXT-3
+Extra Field-4     : JEK_EXT-4
+
+---------Weight & Tablet Count Data-------
+
+=======Primary==========
+Tablet Count: JEK_TAB_COUNT
+Tare Weight:  JEK_TARE_WT
+Gross Weight: JEK_GROSS_WT
+Net Weight:   JEK_NET_WT
+
+=======Shipper==========
+Gross Weight: JEK_GROSS_WT
+Tablet Count: JEK_TAB_COUNT
