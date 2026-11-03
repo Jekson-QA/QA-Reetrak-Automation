@@ -190,4 +190,5 @@ public class LoginLogoutPage extends BasePage {
         waitUtils.waitForVisibility(PasswordTitle).isDisplayed();
         return getText(PasswordTitle);
     }
+    system.out.println ("Hello");
 }
