@@ -5,11 +5,11 @@
     "editor.codeLens": true,
     "java.test.editor.enableShortcuts": true,
     "java.debug.settings.enableRunDebugCodeLens": true,
-    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21.0.12",
+    "java.jdt.ls.java.home": "C:\\Program Files\\Amazon Corretto\\jdk21.0.13_0",
     "java.configuration.runtimes": [
         {
             "name": "JavaSE-21",
-            "path": "C:\\Program Files\\Java\\jdk-21.0.12",
+            "path": "C:\\Program Files\\Amazon Corretto\\jdk21.0.13_0",
             "default": true
         }
     ]
