@@ -28,8 +28,8 @@ public class POMasterTest extends BaseTest {
         Assert.assertEquals(poMasterPage.getPOMasterPageName(), value(poData, "Expected Message or Title"));
     }
 
-    @Test(priority = 2, description = "Verify that a new PO can be added successfully.")
-    public void verifyAddPOfunctionality() throws Exception {
+    @Test(priority = 2, description = "Verify that a new PO can be added successfully for 2-3-4-6 level aggregation batch.")
+    public void verifyAddPOfunctionfor2346AggregationBatch() throws Exception {
         Map<String, String> loginData = pageData(LOGIN_SHEET, "Login-Logout_TC_04");
         Map<String, String> poData = pageData(PO_SHEET, "POMaster_TC_02");
         LoginLogoutPage loginPage = new LoginLogoutPage(driver);
@@ -50,8 +50,8 @@ public class POMasterTest extends BaseTest {
         Assert.assertEquals(poMasterPage.getNotificationMessage(), value(poData, "Expected Message or Title"));
     }
 
-    @Test(priority = 3, description = "Verify that a existing PO can be updated successfully.")
-    public void verifyEditPOfunctionality() throws Exception {
+    @Test(priority = 3, description = "Verify that a new PO can be added successfully for 1-2-3-6 level aggregation batch.")
+    public void verifyAddPOfunctionfor1236AggregationBatch() throws Exception {
         Map<String, String> loginData = pageData(LOGIN_SHEET, "Login-Logout_TC_04");
         Map<String, String> poData = pageData(PO_SHEET, "POMaster_TC_03");
         LoginLogoutPage loginPage = new LoginLogoutPage(driver);
@@ -60,8 +60,8 @@ public class POMasterTest extends BaseTest {
 
         POMasterPage poMasterPage = new POMasterPage(driver);
         poMasterPage.openPOMaster();
-        poMasterPage.AddorUpdatePO("Update",
-                value(poData, "Existing PO Number"),
+        poMasterPage.AddorUpdatePO("Add",
+                null,
                 value(poData, "PO Number"),
                 value(poData, "Batch Number"),
                 value(poData, "MFG Date"),
@@ -71,5 +71,30 @@ public class POMasterTest extends BaseTest {
                 value(poData, "Line"));
         Assert.assertEquals(poMasterPage.getNotificationMessage(), value(poData, "Expected Message or Title"));
     }
+
+    // @Test(priority = 4, description = "Verify that a existing PO can be updated
+    // successfully.")
+    // public void verifyEditPOfunctionality() throws Exception {
+    // Map<String, String> loginData = pageData(LOGIN_SHEET, "Login-Logout_TC_04");
+    // Map<String, String> poData = pageData(PO_SHEET, "POMaster_TC_04");
+    // LoginLogoutPage loginPage = new LoginLogoutPage(driver);
+    // loginPage.open(baseUrl);
+    // loginPage.loginAs(value(loginData, "username"), value(loginData,
+    // "password"));
+
+    // POMasterPage poMasterPage = new POMasterPage(driver);
+    // poMasterPage.openPOMaster();
+    // poMasterPage.AddorUpdatePO("Update",
+    // value(poData, "Existing PO Number"),
+    // value(poData, "PO Number"),
+    // value(poData, "Batch Number"),
+    // value(poData, "MFG Date"),
+    // value(poData, "EXP Date"),
+    // value(poData, "Batch Size"),
+    // value(poData, "Product"),
+    // value(poData, "Line"));
+    // Assert.assertEquals(poMasterPage.getNotificationMessage(), value(poData,
+    // "Expected Message or Title"));
+    // }
 
 }

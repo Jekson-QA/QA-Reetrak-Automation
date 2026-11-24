@@ -1,10 +1,13 @@
 package com.reetrak.automation.pages.productionmaster;
 
 import com.reetrak.automation.pages.BasePage;
+import com.reetrak.automation.pages.catalogue.InboxPage;
+import com.reetrak.automation.utilities.ConfigReader;
 
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -29,7 +32,6 @@ public class BatchRequestPage extends BasePage {
     private String selectedPONumber;
     private String selectedBatchStatus;
 
-
     @FindBy(xpath = "//*[@id='title-RTK_PRODUCTION_MASTER']/p")
     private WebElement productionMasterMenu;
 
@@ -50,7 +52,7 @@ public class BatchRequestPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"closeBatch\"]")
     private WebElement closeAndReopenButton;
-    
+
     @FindBy(xpath = "//*[@id=\"editBatch\"]")
     private WebElement editButton;
 
@@ -94,26 +96,28 @@ public class BatchRequestPage extends BasePage {
     public String getPODetailsDialogTitle() {
         return waitForDialogTitle("PO Details").getText().trim();
     }
+
     public void selectPOByFilterOnly(String poNumber) {
-    WebElement dialog = waitForDialog("PO Details");
-    WebElement filterInput = dialog.findElement(By.xpath(
-            ".//*[@id='quickFilterInput' or @placeholder='Type Text To Filter' or @aria-label='Type Text To Filter']"));
-    scrollToElement(filterInput);
-    type(filterInput, poNumber);
+        WebElement dialog = waitForDialog("PO Details");
+        WebElement filterInput = dialog.findElement(By.xpath(
+                ".//*[@id='quickFilterInput' or @placeholder='Type Text To Filter' or @aria-label='Type Text To Filter']"));
+        scrollToElement(filterInput);
+        type(filterInput, poNumber);
     }
-    //Used By P2 Backup
+
+    // Used By P2 Backup
     public void selectPOByFilter(String poNumber) {
-    WebElement dialog = waitForDialog("PO Details");
-    WebElement filterInput = dialog.findElement(By.xpath(
-            ".//*[@id='quickFilterInput' or @placeholder='Type Text To Filter' or @aria-label='Type Text To Filter']"));
-    scrollToElement(filterInput);
-    type(filterInput, poNumber);
-    WebElement row = waitForPORow(poNumber);
-    WebElement targetCell = row.findElement(By.xpath(".//*[normalize-space()='" + poNumber + "']"));
-    scrollToElement(row);
-    new Actions(driver).moveToElement(targetCell).click().perform();
-    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", row);
-    waitForSelectedPORow(poNumber);
+        WebElement dialog = waitForDialog("PO Details");
+        WebElement filterInput = dialog.findElement(By.xpath(
+                ".//*[@id='quickFilterInput' or @placeholder='Type Text To Filter' or @aria-label='Type Text To Filter']"));
+        scrollToElement(filterInput);
+        type(filterInput, poNumber);
+        WebElement row = waitForPORow(poNumber);
+        WebElement targetCell = row.findElement(By.xpath(".//*[normalize-space()='" + poNumber + "']"));
+        scrollToElement(row);
+        new Actions(driver).moveToElement(targetCell).click().perform();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", row);
+        waitForSelectedPORow(poNumber);
     }
 
     public void selectMultiplePOs(List<String> poNumbers) {
@@ -180,7 +184,8 @@ public class BatchRequestPage extends BasePage {
     public String getBatchConfirmationDialogTitle() {
         return waitForDialogTitle("Batch Confirmation").getText().trim();
     }
-    //Used By P2
+
+    // Used By P2
     public void selectBatchConfirmationMode(String mode) {
         WebElement dialog = waitForDialog("Batch Confirmation");
         selectFieldValueIfPresent(dialog, "Mode", mode);
@@ -189,7 +194,8 @@ public class BatchRequestPage extends BasePage {
 
     public void clickBatchConfirmationSave() {
         WebElement dialog = waitForDialog("Batch Confirmation");
-        WebElement button = dialog.findElement(By.xpath("//*[@id=\"update\"]"));
+        WebElement button = dialog.findElement(By.xpath(
+                ".//button[@id='save' or @id='update' or normalize-space()='SAVE' or normalize-space()='Save']"));
         scrollToElement(button);
         click(button);
     }
@@ -202,7 +208,6 @@ public class BatchRequestPage extends BasePage {
     public String getNotificationMessage() {
         return super.getNotificationMessage();
     }
-
 
     public void selectBatchByPONumber(String poNumber) {
         WebElement filterInput = new WebDriverWait(driver, Duration.ofSeconds(20)).until(
@@ -219,6 +224,7 @@ public class BatchRequestPage extends BasePage {
         new Actions(driver).moveToElement(row).click().perform();
         selectedPONumber = poNumber;
     }
+
     public void selectBatchByPONumberP2(String poNumber) {
         WebElement filterInput = new WebDriverWait(driver, Duration.ofSeconds(20)).until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath(
@@ -227,12 +233,13 @@ public class BatchRequestPage extends BasePage {
         type(filterInput, poNumber);
         selectedPONumber = poNumber;
     }
-    
+
     public void selectBatchByPONumberAndStatus(String poNumber, String status) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebElement filterInput = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id='quickFilterInput' or @placeholder='Type Text To Filter' or @aria-label='Type Text To Filter']")));
+                        By.xpath(
+                                "//*[@id='quickFilterInput' or @placeholder='Type Text To Filter' or @aria-label='Type Text To Filter']")));
         scrollToElement(filterInput);
         filterInput.clear();
         type(filterInput, poNumber);
@@ -243,6 +250,7 @@ public class BatchRequestPage extends BasePage {
         selectedBatchStatus = status;
         wait.until(ExpectedConditions.elementToBeClickable(transferButton));
     }
+
     public void selectBatchByPONumberAndStatusForEdit(String poNumber, String status) {
         WebElement filterInput = new WebDriverWait(driver, Duration.ofSeconds(20)).until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath(
@@ -250,14 +258,14 @@ public class BatchRequestPage extends BasePage {
         scrollToElement(filterInput);
         filterInput.clear();
         type(filterInput, poNumber);
-        
+
         WebElement row = findBatchRowByPONumberAndStatus(poNumber, status);
         scrollToElement(row);
         selectBatchRow(row);
         selectedPONumber = poNumber;
         selectedBatchStatus = status;
     }
-    
+
     private void selectBatchRow(WebElement row) {
         scrollToElement(row);
         List<WebElement> cells = row.findElements(By.xpath(".//*[@role='gridcell' or self::td]"));
@@ -265,7 +273,8 @@ public class BatchRequestPage extends BasePage {
         new Actions(driver).moveToElement(target).click().perform();
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", target);
     }
-     private void waitForSelectedBatchRow(String poNumber) {
+
+    private void waitForSelectedBatchRow(String poNumber) {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.or(
                 ExpectedConditions.presenceOfElementLocated(By.xpath(
                         "//*[(@role='row' or self::tr or contains(@class,'ag-row'))"
@@ -283,6 +292,7 @@ public class BatchRequestPage extends BasePage {
         click(row);
         click(row);
     }
+
     public void selectFirstBatchWithPOName(String status) {
         WebElement row = findBatchRowByStatus(status);
         scrollToElement(row);
@@ -308,6 +318,7 @@ public class BatchRequestPage extends BasePage {
         literal.append(")");
         return literal.toString();
     }
+
     public void selectFirstBatchWithoutStatus(String status) {
         WebElement row = new WebDriverWait(driver, Duration.ofSeconds(20)).until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath(
@@ -333,10 +344,12 @@ public class BatchRequestPage extends BasePage {
         WebElement selectedRow = getSelectedBatchRow();
         return getRowStatus(selectedRow);
     }
+
     public String getSelectedBatchStatus() {
         WebElement selectedRow = getSelectedBatchRow();
         return getRowStatus(selectedRow);
     }
+
     public void waitForBatchStatus(String expectedStatus) {
         new WebDriverWait(driver, Duration.ofSeconds(15)).until(driver -> {
             try {
@@ -347,6 +360,7 @@ public class BatchRequestPage extends BasePage {
             }
         });
     }
+
     public void clickTransfer() {
         if (selectedPONumber != null && !selectedPONumber.isBlank()) {
             if (selectedBatchStatus != null && !selectedBatchStatus.isBlank()) {
@@ -356,10 +370,10 @@ public class BatchRequestPage extends BasePage {
             }
         }
         scrollToElement(transferButton);
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(transferButton));
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(transferButton));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", transferButton);
     }
-
 
     public String getTransferBatchDetailsDialogTitle() {
         return waitForDialogTitle("Transfer Batch Details").getText().trim();
@@ -371,11 +385,13 @@ public class BatchRequestPage extends BasePage {
         selectFieldValueIfPresent(dialog, "Mode", mode);
         driver.switchTo().activeElement().sendKeys(Keys.TAB);
     }
+
     public void selectTransferBatchDetailsMode(String mode) {
         WebElement dialog = waitForDialog("Batch Confirmation");
         selectFieldValueIfPresent(dialog, "Mode", mode);
         driver.switchTo().activeElement().sendKeys(Keys.TAB);
     }
+
     public void clickTransferBatchDetailsSave() {
         clickDialogButton("Transfer Batch Details");
     }
@@ -384,13 +400,15 @@ public class BatchRequestPage extends BasePage {
         confirmDialogByText(confirmationMessage);
         submitRemarks(remarks);
     }
+
     public void waitForSeconds(int seconds) {
-    try {
-        Thread.sleep(seconds * 1000L);
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
+        try {
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
-    }
+
     public void clickReTransfer() {
         scrollToElement(reTransferButton);
         click(reTransferButton);
@@ -413,10 +431,10 @@ public class BatchRequestPage extends BasePage {
     }
 
     public void confirmDialogContaining(String partialMessage) {
-    WebElement dialog = waitForDialogContaining(partialMessage);
-    clickButtonInScope(dialog, "OK");
+        WebElement dialog = waitForDialogContaining(partialMessage);
+        clickButtonInScope(dialog, "OK");
     }
-    
+
     public void confirmReTransferFromDetails() {
         WebElement dialog = waitForDialogContaining("Are you sure want to re-transfer batch");
         clickButtonInScope(dialog, "OK");
@@ -424,7 +442,8 @@ public class BatchRequestPage extends BasePage {
 
     public void submitRemarks(String remarks) {
         WebElement dialog = waitForDialog("Batch Remarks");
-        WebElement remarksField = dialog.findElement(By.xpath(".//textarea[@id='remarks' or @formcontrolname='remarks']"));
+        WebElement remarksField = dialog
+                .findElement(By.xpath(".//textarea[@id='remarks' or @formcontrolname='remarks']"));
         type(remarksField, remarks);
         clickButtonInScope(dialog, "OK");
         this.selectedBatchStatus = null;
@@ -451,15 +470,16 @@ public class BatchRequestPage extends BasePage {
 
     public void confirmReopenBatch(String remarks) {
         WebElement dialog = waitForDialog("ReOpen/Close Batch");
-        //clickButtonInScope(dialog, "OK");
+        // clickButtonInScope(dialog, "OK");
         WebElement radio = dialog.findElement(By.xpath("//*[@id=\"submit\"]"));
         click(radio);
         confirmDialogByText("Do you want to reopen the selected batch :");
         submitRemarks(remarks);
     }
+
     public void confirmPermanentCloseBatch(String remarks) {
         WebElement dialog = waitForDialog("ReOpen/Close Batch");
-        //clickButtonInScope(dialog, "OK");
+        // clickButtonInScope(dialog, "OK");
         WebElement radio = dialog.findElement(By.xpath("//*[@id=\"submit\"]"));
         click(radio);
         confirmDialogByText("Do you want to permanently close the selected batch :");
@@ -477,22 +497,23 @@ public class BatchRequestPage extends BasePage {
     public void clearReopenLineSelectionAndSave(String selectedLine) {
         WebElement dialog = waitForDialog("ReOpen/Close Batch");
         WebElement lineSelect = findFieldByLabel(dialog, "Select Line");
-        WebElement trigger = lineSelect.findElement(By.xpath(".//*[contains(@class,'mat-select-arrow') or @role='combobox'][1]"));
+        WebElement trigger = lineSelect
+                .findElement(By.xpath(".//*[contains(@class,'mat-select-arrow') or @role='combobox'][1]"));
         scrollToElement(trigger);
         click(trigger);
         WebElement selectedOption = new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.elementToBeClickable(By.xpath("//mat-option[.//span[normalize-space()='" + selectedLine + "']]")));
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//mat-option[.//span[normalize-space()='" + selectedLine + "']]")));
         click(selectedOption);
         clickButtonInScope(dialog, "OK");
     }
 
     public String getRequiredLineValidationMessage() {
-    WebElement dialog = waitForDialog("ReOpen/Close Batch");
-    WebElement errorMsg = dialog.findElement(
-        By.xpath(".//*[contains(normalize-space(text()),'This field is required')]")
-    );
-    return errorMsg.getText().trim();
-    }   
+        WebElement dialog = waitForDialog("ReOpen/Close Batch");
+        WebElement errorMsg = dialog.findElement(
+                By.xpath(".//*[contains(normalize-space(text()),'This field is required')]"));
+        return errorMsg.getText().trim();
+    }
 
     public void updateExtraQuantityAndSave(String extraQuantity) {
         waitForDialogTitle("Update Batch information");
@@ -502,9 +523,10 @@ public class BatchRequestPage extends BasePage {
                             "//div[contains(@class,'cdk-overlay-pane') or contains(@class,'mat-dialog-container')]"
                                     + "[.//*[normalize-space()='Update Batch information']]")));
             ((JavascriptExecutor) driver).executeScript(
-                "var scrollable = arguments[0].querySelector('mat-dialog-content, .mat-dialog-content, [style*=\"overflow\"]') || arguments[0];" +
-                "scrollable.scrollTop = scrollable.scrollHeight;", 
-                dialog);
+                    "var scrollable = arguments[0].querySelector('mat-dialog-content, .mat-dialog-content, [style*=\"overflow\"]') || arguments[0];"
+                            +
+                            "scrollable.scrollTop = scrollable.scrollHeight;",
+                    dialog);
             Thread.sleep(1000);
         } catch (Exception e) {
             System.out.println("Failed to scroll: " + e.getMessage());
@@ -537,9 +559,11 @@ public class BatchRequestPage extends BasePage {
     private WebElement waitForDialogContaining(String text) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath(
-                        "//div[contains(@class,'cdk-overlay-pane')][.//*[contains(normalize-space(),'" + text + "')]]")));
+                        "//div[contains(@class,'cdk-overlay-pane')][.//*[contains(normalize-space(),'" + text
+                                + "')]]")));
     }
-    //Used by P2
+
+    // Used by P2
     private WebElement waitForDialogTitle(String dialogTitle) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath(
@@ -548,11 +572,13 @@ public class BatchRequestPage extends BasePage {
 
     private void clickDialogButton(String dialogTitle) {
         WebElement dialog = waitForDialog(dialogTitle);
-        WebElement button = dialog.findElement(By.xpath(".//button[@id='save' or normalize-space()='SAVE' or normalize-space()='Save']"));
+        WebElement button = dialog
+                .findElement(By.xpath(".//button[@id='save' or normalize-space()='SAVE' or normalize-space()='Save']"));
         scrollToElement(button);
         new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.elementToBeClickable(button));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
     }
+
     private WebElement waitForPORow(String poNumber) {
         return new WebDriverWait(driver, Duration.ofSeconds(20)).until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath(
@@ -561,6 +587,7 @@ public class BatchRequestPage extends BasePage {
                                 + "//*[(@role='row' or self::tr or contains(@class,'ag-row'))"
                                 + " and .//*[normalize-space()='" + poNumber + "']]")));
     }
+
     private void waitForSelectedPORow(String poNumber) {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> {
             WebElement row = driver.findElement(By.xpath(
@@ -568,20 +595,17 @@ public class BatchRequestPage extends BasePage {
                             + " and .//*[normalize-space()='" + poNumber + "']]"));
             String classAttr = row.getAttribute("class");
             String ariaSelected = row.getAttribute("aria-selected");
-            
-            boolean isClassSelected = classAttr != null && (
-                    classAttr.contains("selected") ||
+
+            boolean isClassSelected = classAttr != null && (classAttr.contains("selected") ||
                     classAttr.contains("active") ||
                     classAttr.contains("highlight") ||
                     classAttr.contains("mat-selected") ||
                     classAttr.contains("ui-state-highlight") ||
-                    classAttr.contains("ag-row-selected")
-            );
+                    classAttr.contains("ag-row-selected"));
             boolean isAriaSelected = "true".equalsIgnoreCase(ariaSelected);
             return isClassSelected || isAriaSelected;
         });
     }
-
 
     public void selectBatchByPONumberForReTrasfer(String poNumber) {
         WebElement filterInput = new WebDriverWait(driver, Duration.ofSeconds(20)).until(
@@ -637,17 +661,19 @@ public class BatchRequestPage extends BasePage {
                 ".//*[contains(@class,'mat-select-arrow') or @role='combobox' or contains(@class,'mat-select-trigger')][1]"));
         scrollToElement(trigger);
         click(trigger);
-        
+
         String cleanVal = value.trim().toLowerCase().replace(" ", "");
-        
+
         WebElement filter = findOpenSelectFilter();
         if (filter != null) {
             type(filter, value.trim());
         }
-        
+
         try {
-            By exactLocator = By.xpath("//mat-option[.//span[normalize-space()='" + value.trim() + "'] or normalize-space()='" + value.trim() + "']");
-            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(exactLocator));
+            By exactLocator = By.xpath("//mat-option[.//span[normalize-space()='" + value.trim()
+                    + "'] or normalize-space()='" + value.trim() + "']");
+            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(3))
+                    .until(ExpectedConditions.elementToBeClickable(exactLocator));
             click(option);
             return;
         } catch (Exception e) {
@@ -656,17 +682,23 @@ public class BatchRequestPage extends BasePage {
                 type(filter, value.trim().replace(" ", ""));
             }
         }
-        
+
         try {
-            By fallbackLocator = By.xpath("//mat-option[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz'), '" + cleanVal + "')]");
-            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(fallbackLocator));
+            By fallbackLocator = By.xpath(
+                    "//mat-option[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz'), '"
+                            + cleanVal + "')]");
+            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(3))
+                    .until(ExpectedConditions.elementToBeClickable(fallbackLocator));
             click(option);
         } catch (Exception e) {
             if (filter != null) {
                 filter.clear();
             }
-            By fallbackLocator = By.xpath("//mat-option[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz'), '" + cleanVal + "')]");
-            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(fallbackLocator));
+            By fallbackLocator = By.xpath(
+                    "//mat-option[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz'), '"
+                            + cleanVal + "')]");
+            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.elementToBeClickable(fallbackLocator));
             click(option);
         }
     }
@@ -679,35 +711,41 @@ public class BatchRequestPage extends BasePage {
 
     public void selectHierarchySelection(String hierarchyName) throws Exception {
         WebElement dialog = waitForDialog("Hierarchy Selection");
-        
+
         WebElement trigger = dialog.findElement(By.xpath(".//*[@id='selectHierarachy']"));
         scrollToElement(trigger);
         click(trigger);
-        
+
         String cleanVal = hierarchyName.trim().toLowerCase().replace(" ", "");
-        
+
         WebElement filter = findOpenSelectFilter();
         if (filter != null) {
             type(filter, hierarchyName.trim());
         }
-        
+
         try {
-            By exactLocator = By.xpath("//mat-option[.//span[normalize-space()='" + hierarchyName.trim() + "'] or normalize-space()='" + hierarchyName.trim() + "']");
-            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(exactLocator));
+            By exactLocator = By.xpath("//mat-option[.//span[normalize-space()='" + hierarchyName.trim()
+                    + "'] or normalize-space()='" + hierarchyName.trim() + "']");
+            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(3))
+                    .until(ExpectedConditions.elementToBeClickable(exactLocator));
             click(option);
         } catch (Exception e) {
             if (filter != null) {
                 filter.clear();
                 type(filter, hierarchyName.trim().replace(" ", ""));
             }
-            By fallbackLocator = By.xpath("//mat-option[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz'), '" + cleanVal + "')]");
-            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(fallbackLocator));
+            By fallbackLocator = By.xpath(
+                    "//mat-option[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz'), '"
+                            + cleanVal + "')]");
+            WebElement option = new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.elementToBeClickable(fallbackLocator));
             click(option);
         }
-        
+
         Thread.sleep(500);
-        
-        WebElement okButton = dialog.findElement(By.xpath(".//*[normalize-space()='OK'] | .//*[@id='ok'] | .//*[@id='OK']"));
+
+        WebElement okButton = dialog
+                .findElement(By.xpath(".//*[normalize-space()='OK'] | .//*[@id='ok'] | .//*[@id='OK']"));
         scrollToElement(okButton);
         click(okButton);
 
@@ -715,7 +753,8 @@ public class BatchRequestPage extends BasePage {
             WebElement confirmDialog = new WebDriverWait(driver, Duration.ofSeconds(5)).until(
                     ExpectedConditions.visibilityOfElementLocated(By.xpath(
                             "//div[contains(@class,'cdk-overlay-pane')][.//*[contains(normalize-space(),'OK') or contains(normalize-space(),'Cancel')]]")));
-            WebElement confirmOk = confirmDialog.findElement(By.xpath(".//button[normalize-space()='OK' or @id='ok' or @id='OK'] | .//*[@id='OK'] | .//*[@id='ok']"));
+            WebElement confirmOk = confirmDialog.findElement(By.xpath(
+                    ".//button[normalize-space()='OK' or @id='ok' or @id='OK'] | .//*[@id='OK'] | .//*[@id='ok']"));
             click(confirmOk);
         } catch (Exception e) {
             System.out.println("No confirmation dialog after Hierarchy Selection OK click: " + e.getMessage());
@@ -725,6 +764,7 @@ public class BatchRequestPage extends BasePage {
     private boolean containsBatchStatus(String text) {
         return BATCH_STATUSES.stream().anyMatch(status -> text.toLowerCase().contains(status.toLowerCase()));
     }
+
     private WebElement getSelectedBatchRow() {
         if (selectedPONumber != null && !selectedPONumber.isBlank()) {
             List<WebElement> rowsByPO = driver.findElements(By.xpath(
@@ -759,6 +799,7 @@ public class BatchRequestPage extends BasePage {
     public String getSelectedBatchPONumber() {
         return getSelectedBatchCellText(0);
     }
+
     private String getSelectedBatchCellText(int cellIndex) {
         WebElement row = getSelectedBatchRow();
         List<WebElement> cells = row.findElements(By.xpath(".//*[@role='gridcell' or self::td]"));
@@ -770,7 +811,8 @@ public class BatchRequestPage extends BasePage {
         }
         throw new NoSuchElementException("Unable to read selected batch grid cell index: " + cellIndex);
     }
-    public void ReTransferBatchDetailsModeAndLine(String line,String mode) {
+
+    public void ReTransferBatchDetailsModeAndLine(String line, String mode) {
         WebElement dialog = waitForDialog("Batch Confirmation");
         selectFieldValueIfPresent(dialog, "Line", line);
         selectFieldValueIfPresent(dialog, "Mode", mode);
@@ -803,15 +845,18 @@ public class BatchRequestPage extends BasePage {
         }
         return "";
     }
+
     private String normalizeBatchStatus(String status) {
         if ("Ready for transfer".equalsIgnoreCase(status)) {
             return "Ready For Transfer";
         }
         return status;
     }
-        private boolean isBatchStatus(String text) {
+
+    private boolean isBatchStatus(String text) {
         return BATCH_STATUSES.stream().anyMatch(status -> status.equalsIgnoreCase(text));
     }
+
     private String getRowStatus(WebElement row) {
         String rowText = row.getText();
         for (String batchStatus : BATCH_STATUSES) {
@@ -847,14 +892,312 @@ public class BatchRequestPage extends BasePage {
     }
 
     public void clearReopenLineSelectionAndSave() {
-    click(OKbutReopen);
+        click(OKbutReopen);
+    }
+
+    public String getPONumber(Map<String, String> data, Map<String, String> poData,
+            List<Map<String, String>> createdPOs) {
+        String directPO = data != null ? data.getOrDefault("PO Number", "") : "";
+        if (directPO != null && !directPO.isBlank()) {
+            return directPO.trim();
+        }
+        if (createdPOs != null && !createdPOs.isEmpty()) {
+            String poSource = data != null ? data.get("PO Source Test Case") : null;
+            if (poSource != null && !poSource.isBlank()) {
+                for (Map<String, String> created : createdPOs) {
+                    if (poSource.trim().equalsIgnoreCase(created.get("testCase"))) {
+                        return created.get("poNumber");
+                    }
+                }
+            }
+            return createdPOs.get(0).get("poNumber");
+        }
+        if (poData != null) {
+            String poNum = poData.get("PO Number");
+            if (poNum != null && !poNum.isBlank()) {
+                return poNum.trim();
+            }
+        }
+        return "";
+    }
+
+    public String getPONumber(Map<String, String> data, Map<String, String> poData) {
+        return getPONumber(data, poData, null);
+    }
+
+    public String getBatchNumber(Map<String, String> data, Map<String, String> poData,
+            List<Map<String, String>> createdPOs) {
+        if (createdPOs != null && !createdPOs.isEmpty()) {
+            String poSource = data != null ? data.get("PO Source Test Case") : null;
+            if (poSource != null && !poSource.isBlank()) {
+                for (Map<String, String> created : createdPOs) {
+                    if (poSource.trim().equalsIgnoreCase(created.get("testCase"))) {
+                        return created.get("batchNumber");
+                    }
+                }
+            }
+            return createdPOs.get(0).get("batchNumber");
+        }
+        if (poData != null) {
+            String batchNum = poData.get("Batch Number");
+            if (batchNum != null && !batchNum.isBlank()) {
+                return batchNum.trim();
+            }
+        }
+        return data != null && data.get("Batch Number") != null ? data.get("Batch Number").trim() : "";
+    }
+
+    public String getBatchNumber(Map<String, String> data, Map<String, String> poData) {
+        return getBatchNumber(data, poData, null);
+    }
+
+    public String getLineName(Map<String, String> data, Map<String, String> lineData,
+            List<Map<String, String>> createdPOs) {
+        if (createdPOs != null && !createdPOs.isEmpty()) {
+            String poSource = data != null ? data.get("PO Source Test Case") : null;
+            if (poSource != null && !poSource.isBlank()) {
+                for (Map<String, String> created : createdPOs) {
+                    if (poSource.trim().equalsIgnoreCase(created.get("testCase"))) {
+                        return created.get("lineName");
+                    }
+                }
+            }
+            return createdPOs.get(0).get("lineName");
+        }
+        if (lineData != null) {
+            String lineName = lineData.get("New Line Name");
+            if (lineName == null || lineName.isBlank()) {
+                lineName = lineData.get("Existing Line Name");
+            }
+            if (lineName != null && !lineName.isBlank()) {
+                return lineName.trim();
+            }
+        }
+        return data != null && data.get("Line") != null ? data.get("Line").trim() : "";
+    }
+
+    public String getLineName(Map<String, String> data, Map<String, String> lineData) {
+        return getLineName(data, lineData, null);
+    }
+
+    public String expectedMessage(Map<String, String> data) {
+        if (data == null) {
+            return "";
+        }
+        String approveVal = data.get("approve");
+        if (approveVal == null)
+            approveVal = data.get("Approve");
+        if (approveVal == null)
+            approveVal = data.get("APPROVE");
+        if (approveVal == null)
+            approveVal = "";
+
+        String expected = data.getOrDefault("Expected Message or Title", "");
+
+        if (expected.toLowerCase().contains(" or ")) {
+            String[] parts = expected.split("(?i)\\s+or\\s+");
+            if ("YES".equalsIgnoreCase(approveVal.trim())) {
+                return parts.length > 1 ? parts[1].trim() : parts[0].trim();
+            } else {
+                return parts[0].trim();
+            }
+        }
+
+        if ("YES".equalsIgnoreCase(approveVal.trim())) {
+            String inboxMsg = data.get("Expected Message From Inbox");
+            if (inboxMsg != null && !inboxMsg.isBlank()) {
+                return inboxMsg.trim();
+            }
+        }
+
+        return expected.trim();
+    }
+
+    public void handleHierarchySelection(String hierarchyName) throws Exception {
+        boolean isHierarchyEnabled = Boolean.parseBoolean(ConfigReader.getRequired("hierarchy.master.enabled"));
+        if (isHierarchyEnabled) {
+            if (hierarchyName == null || hierarchyName.trim().isEmpty()) {
+                throw new RuntimeException(
+                        ">>> Validation Error: 'Hierarchy Name' value is missing or blank in the Test Data Excel file. Please check.");
+            }
+            selectHierarchySelection(hierarchyName.trim());
+        }
+    }
+
+    public void loadBatchAndSave(String poNumber, String hierarchyName, String remarks, Map<String, String> excelData)
+            throws Exception {
+        boolean isHierarchyEnabled = Boolean.parseBoolean(ConfigReader.getRequired("hierarchy.master.enabled"));
+        if (isHierarchyEnabled) {
+            if (hierarchyName == null || hierarchyName.trim().isEmpty()) {
+                throw new RuntimeException(
+                        ">>> Validation Error: 'Hierarchy Name' value is missing or blank in the Test Data Excel file. Please check.");
+            }
+            if (excelData != null) {
+                String approveVal = excelData.get("approve");
+                if (approveVal == null) {
+                    approveVal = excelData.get("Approve");
+                }
+                if (approveVal == null) {
+                    approveVal = excelData.get("APPROVE");
+                }
+                if (approveVal == null || approveVal.trim().isEmpty()) {
+                    throw new RuntimeException(
+                            ">>> Validation Error: 'Approve' value is missing or blank in the Test Data Excel file. Please check.");
+                }
+            }
+        }
+
+        clickLoadBatch();
+        selectPOByFilterOnly(poNumber);
+        selectFirstBatchWithStatus(poNumber);
+        clickPODetailsSave();
+        clickBatchInformationSave();
+        clickBatchConfirmationSave();
+        handleHierarchySelection(hierarchyName);
+        submitRemarks(remarks != null && !remarks.isBlank() ? remarks : "ok");
+        if (excelData != null) {
+            String batchNumber = excelData.get("Batch Number");
+            handleInboxApproval(poNumber, batchNumber, excelData);
+        }
+    }
+
+    public void loadBatchAndSave(String poNumber, String hierarchyName, String remarks) throws Exception {
+        loadBatchAndSave(poNumber, hierarchyName, remarks, null);
+    }
+
+    public void loadBatchAndSave(String poNumber, String hierarchyName, boolean isHierarchyEnabled, String remarks)
+            throws Exception {
+        loadBatchAndSave(poNumber, hierarchyName, remarks, null);
+    }
+
+    public void transferBatch(String poNumber, String mode, String lineName, String confirmationMessage,
+            String remarks) {
+        selectBatchByPONumberP2(poNumber);
+        selectFirstBatchWithStatus(poNumber);
+        clickTransfer();
+        selectTransferBatchDetailsModeAndLine(mode, lineName);
+        clickTransferBatchDetailsSave();
+        confirmTransferBatchAndSubmitRemarks(
+                confirmationMessage != null && !confirmationMessage.isBlank() ? confirmationMessage : "Transfer batch",
+                remarks != null && !remarks.isBlank() ? remarks : "ok");
+    }
+
+    public void retransferRunningBatch(String lineName, String mode, String confirmMsg1, String confirmMsg2,
+            String remarks) {
+        waitForSeconds(5);
+        selectFirstBatchWithStatus("Running");
+        clickReTransfer();
+        confirmDialogByText(confirmMsg1 != null && !confirmMsg1.isBlank() ? confirmMsg1
+                : "Are you sure want to re-transfer Lot Number");
+        ReTransferBatchDetailsModeAndLine(lineName, mode);
+        confirmDialogByText(confirmMsg2 != null && !confirmMsg2.isBlank() ? confirmMsg2
+                : "Are you sure want to re-transfer batch :");
+        submitRemarks(remarks != null && !remarks.isBlank() ? remarks : "ok");
+    }
+
+    public void transferReadyForTransferBatch(String poNumber, String mode, String lineName, String confirmMsg,
+            String remarks) {
+        selectBatchByPONumber(poNumber);
+        selectFirstBatchWithStatus(poNumber);
+        clickTransfer();
+        selectTransferBatchDetailsModeAndLine(mode, lineName);
+        clickTransferBatchDetailsSave();
+        confirmDialogByText(confirmMsg != null && !confirmMsg.isBlank() ? confirmMsg : "Transfer batch");
+        submitRemarks(remarks != null && !remarks.isBlank() ? remarks : "ok");
+    }
+
+    public void reopenTemporaryClosedBatch(String poNumber, String status, String mode, String lineName,
+            String remarks) {
+        selectBatchByPONumber(poNumber);
+        selectFirstBatchWithStatus(status);
+        openReopenDialogForSelectedBatch();
+        chooseReopenBatch();
+        selectReopenModeAndLine(mode, lineName);
+        confirmReopenBatch(remarks != null && !remarks.isBlank() ? remarks : "Reopen batch");
+    }
+
+    public void editExtraQuantityAndSave(String poNumber, String status, String extraQuantity, String mode,
+            String hierarchyName, String remarks) throws Exception {
+        waitForSeconds(5);
+        selectBatchByPONumberAndStatusForEdit(poNumber, status);
+        clickEdit();
+        updateExtraQuantityAndSave(extraQuantity);
+        confirmDialogContaining("want to generate");
+        selectTransferBatchDetailsMode(mode);
+        clickBatchConfirmationSave();
+        handleHierarchySelection(hierarchyName);
+        submitRemarks(remarks != null && !remarks.isBlank() ? remarks : "ok");
+    }
+
+    public void editExtraQuantityAndSave(String poNumber, String status, String extraQuantity, String mode,
+            String hierarchyName, boolean isHierarchyEnabled, String remarks) throws Exception {
+        editExtraQuantityAndSave(poNumber, status, extraQuantity, mode, hierarchyName, remarks);
+    }
+
+    public void permanentCloseBatch(String poNumber, String status, String remarks) {
+        selectBatchByPONumber(poNumber);
+        selectFirstBatchWithStatus(status);
+        openReopenDialogForSelectedBatch();
+        choosePermanentClose();
+        confirmPermanentCloseBatch(remarks != null && !remarks.isBlank() ? remarks : "PermanentClose Batch");
+    }
+
+    public void approveBatchInInbox(String poNumber, String batchNumber, String remarks) throws Exception {
+        InboxPage inboxPage = new InboxPage(driver);
+        inboxPage.openInbox();
+
+        String requestName = (batchNumber != null && !batchNumber.isBlank()) ? (poNumber + "-" + batchNumber)
+                : poNumber;
+        inboxPage.filterRequest(requestName);
+        if (!inboxPage.isRequestPresent(requestName)) {
+            openBatchRequest();
+            return;
+        }
+        inboxPage.selectRowByRequestName(requestName);
+        inboxPage.clickAction();
+        inboxPage.clickApprove();
+        inboxPage.confirmOk();
+
+        inboxPage.submitRemarks(remarks != null && !remarks.isBlank() ? remarks : "Approve Batch");
+    }
+
+    public void handleInboxApproval(String poNumber, String batchNumber, Map<String, String> excelData)
+            throws Exception {
+        boolean isHierarchyEnabled = Boolean.parseBoolean(ConfigReader.getRequired("hierarchy.master.enabled"));
+        if (!isHierarchyEnabled || excelData == null) {
+            return;
+        }
+
+        String approveVal = excelData.get("approve");
+        if (approveVal == null) {
+            approveVal = excelData.get("Approve");
+        }
+        if (approveVal == null) {
+            approveVal = excelData.get("APPROVE");
+        }
+
+        if (approveVal == null || approveVal.trim().isEmpty()) {
+            throw new RuntimeException(
+                    ">>> Validation Error: 'Approve' value is missing or blank in the Test Data Excel file. Please check.");
+        }
+
+        approveVal = approveVal.trim();
+        if ("YES".equalsIgnoreCase(approveVal)) {
+            approveBatchInInbox(poNumber, batchNumber, "Approve Batch");
+        } else if ("NO".equalsIgnoreCase(approveVal)) {
+            // If the value is NO, do not perform the batch approval process from the Inbox
+        } else {
+            throw new RuntimeException(">>> Validation Error: Invalid value '" + approveVal
+                    + "' in 'Approve' column. Expected 'YES' or 'NO', please check.");
+        }
     }
 
     private WebElement findFieldByLabel(WebElement scope, String label) {
         List<By> fieldLocators = Arrays.asList(
                 By.xpath(".//mat-form-field[.//*[normalize-space()='" + label + "']][1]"),
                 By.xpath(".//*[normalize-space()='" + label + "']/ancestor::mat-form-field[1]"),
-                By.xpath(".//*[normalize-space()='" + label + "']/ancestor::div[contains(@class,'mat-form-field')][1]"));
+                By.xpath(
+                        ".//*[normalize-space()='" + label + "']/ancestor::div[contains(@class,'mat-form-field')][1]"));
 
         for (By locator : fieldLocators) {
             List<WebElement> fields = scope.findElements(locator);
